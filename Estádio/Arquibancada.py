@@ -31,29 +31,26 @@ aux4 = 0
 angulo = 45
 
 
-def gradeHorizontal(posicao,tamanho, espaco):
-
-    contador = 0
-    while(contador < 10):
-        glColor3f(.0, .0, .0) # cor RGB  eixo z
-        glPushMatrix()                # Push e Pop Isolam os efeitos das transformaçoes no objeto
-        glTranslate( 0.0, posicao, 0.0)  #Transtaçao do objeto
-        glutSolidCylinder(0.2, tamanho, 40, 10)
-        glPopMatrix()
-
-        contador = contador + 1
-        posicao = posicao + espaco
-        tamanho = tamanho - 2
-    
+def grade(qtd):
+	glRotate(-90,1,0,0)
+	glPushMatrix()
+	glColor(0,0,0)
+	for i in range(qtd):
+		glutSolidCylinder(0.08,(i+1),10,10)
+		glTranslate(1,0,0)
+	glPopMatrix()
+	glRotate(90,1,0,0)
 
 def desenho():
-    eixos()
-
-    gradeHorizontal(-1,20,1)
-
-    #objetivo e espelhar do jeito que se encontra para formar a parte vertical da arquibancada.
-    glRotatef(90, 1.0, 0.0, 0.0)
-    gradeHorizontal(-1,20,2)
+	for i in range(50):
+		glPushMatrix()
+		grade(10)
+		glRotate(-180,0,1,0)
+		glRotate(-90,0,0,1)
+		glTranslate(-10,-9.741,0)
+		grade(10)
+		glPopMatrix()
+		glTranslate(0,0,2)
 
 def iluminacao_da_cena():
     global aux1
