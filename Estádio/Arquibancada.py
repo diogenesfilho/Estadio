@@ -1,7 +1,3 @@
-# -*- coding: utf-8 -*- 
-
-# Aula sobre composição de objetos e uso do teclado.
-
 
 from math import cos
 from math import pi
@@ -15,20 +11,13 @@ from OpenGL.GL import *
 from OpenGL.GLU import *
 from OpenGL.GLUT import *
 
-global esqdir
-global cimabaixo
-global aux1
-global aux2
-global angulo
+global esqdir,cimabaixo
+global mouseX, mouseY,mouseX_ant, mouseY_ant
+global distancia
 
-
-esqdir = 0
-cimabaixo = 0
-aux1 = 0
-aux2 = 0
-aux3 = 0
-aux4 = 0
-angulo = 45
+esqdir,cimabaixo = 0,0
+mouseY,mouseX,mouseX_ant,mouseY_ant = .0,.0,.0,.0
+distancia = 20
 
 
 def grade(qtd):
@@ -41,23 +30,40 @@ def grade(qtd):
 	glPopMatrix()
 	glRotate(90,1,0,0)
 
+def bancos(qtd):
+	glPushMatrix()
+	glScale(.5,.2,2)
+	glColor(.3,.3,.3)
+	for i in range(qtd):
+		glutSolidCube(0.5)
+		glTranslate(0.5,0,0)
+	glPopMatrix()
+
 def desenho():
+	glPushMatrix()
+	glTranslate(0,0,124.9)
+	glRotate(90,0,1,0)
+	for i in range(10):
+		bancos(500)
+		glTranslate(0,1,1)
+	glPopMatrix()
+	
+
 	for i in range(50):
 		glPushMatrix()
 		grade(10)
 		glRotate(-180,0,1,0)
 		glRotate(-90,0,0,1)
-		glTranslate(-10,-9.741,0)
+		glTranslate(-9,-9,0)
 		grade(10)
 		glPopMatrix()
 		glTranslate(0,0,2)
 
 def iluminacao_da_cena():
-    global aux1
     luzAmbiente=[0.2,0.2,0.2,1.0]
     luzDifusa=[0.7,0.7,0.7,1.0]  # ; // "cor"
     luzEspecular = [1.0, 1.0, 1.0, 1.0]  #;// "brilho"
-    posicaoLuz=[aux1, 50.0, 50.0, 1.0]
+    posicaoLuz=[25, 50.0, 50.0, 1.0]
 
     #Capacidade de brilho do material
     especularidade=[1.0,1.0,1.0,1.0]
@@ -94,103 +100,58 @@ def iluminacao_da_cena():
 
 
 def tela():
-
-    global angulo
-    
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT) # Limpar a tela
     glClearColor(1.0, 1.0, 1.0, 1.0) # Limpa a janela com a cor especificada
     glMatrixMode(GL_PROJECTION) # Muda a matriz de projeçao
     glLoadIdentity()# carrega a matriz identidade
-
-    gluPerspective(angulo,1,0.1,500) # Especifica a projeção perspectiva
+    gluPerspective(distancia,1,0.1,500) # Especifica a projeção perspectiva
     glMatrixMode(GL_MODELVIEW) # Especifica sistema de coordenadas do modelo
     glLoadIdentity() # Inicializa sistema de coordenadas do modelo
-
-    gluLookAt(sin(esqdir) * 10, 0 + cimabaixo ,cos(esqdir) * 10, aux1,aux2,0, 0,1,0) # Especifica posição do observador e do alvo
+    gluLookAt(sin(esqdir) * 10, cimabaixo ,cos(esqdir) * 10, mouseX,mouseY,0, 0,1,0) # Especifica posição do observador e do alvo
     iluminacao_da_cena()
     glEnable(GL_DEPTH_TEST) # verifica os pixels que devem ser plotados no desenho 3d
 
     desenho()                    
     glFlush()                    # Aplica o desenho
 
-# Função callback chamada para gerenciar eventos de teclas normais 
-def Teclado (tecla, x, y):
-    global aux1
-    global aux2
-    print("*** Tratamento de teclas comuns")
-    print(">>> Tecla: ",tecla)
-    
-    if tecla==chr(27): # ESC ?
-        sys.exit(0)
-
-    if tecla == b'a':  # A
-        aux1 = aux1 - 0.1
-        print ("aux1 = ", aux1 )
-    
-    if tecla == b's': # S
-        aux1 = aux1 + 0.1
-        print ("aux1 = ", aux1 )
-        
-    if tecla == b'w': # W
-        aux2 = aux2 + 0.1
-        print ("aux2 = ", aux2 )
-
-    if tecla == b'z': # Z
-        aux2 = aux2 - 0.1
-        print ("aux2 = ", aux2 )
-    tela()
-    glutPostRedisplay()
-
-# Função callback chamada para gerenciar eventos de teclas especiais
-def TeclasEspeciais (tecla, x, y):
+def teclado(tecla,x,y):
     global esqdir
     global cimabaixo
-    print("*** Tratamento de teclas especiais")
-    print ("tecla: ", tecla)
-    if tecla == GLUT_KEY_F1:
-        print(">>> Tecla F1 pressionada")
-    elif tecla == GLUT_KEY_F2:
-        print(">>> Tecla F2 pressionada")
-    elif tecla == GLUT_KEY_F3:
-        print(">>> Tecla F3 pressionada")
-    elif tecla == GLUT_KEY_LEFT:
+    if tecla == b'a':
         esqdir = esqdir - 0.1
-    elif tecla == GLUT_KEY_RIGHT:
+    elif tecla == b'd':
         esqdir = esqdir + 0.1
-    elif tecla == GLUT_KEY_UP:
-        cimabaixo = cimabaixo + 0.05
-    elif tecla == GLUT_KEY_DOWN:
-        cimabaixo = cimabaixo - 0.05
-    else:
-        print ("Apertou... " , tecla)
-    tela()
+    elif tecla == b'w':
+        cimabaixo = cimabaixo + 0.1
+    elif tecla == b's':
+        cimabaixo = cimabaixo - 0.1
     glutPostRedisplay()   
 
-# Função callback chamada para gerenciar eventos do mouse
-def ControleMouse(button, state, x, y):
-    global angulo
-    if (button == 3):
-        if (state == GLUT_DOWN): 
-            if (angulo >= 10):
-                angulo -= 2
-        
-    if (button == 4):
-        if (state == GLUT_DOWN):   # Zoom-out
-            if (angulo <= 130):
-                angulo += 2
-    tela()
-    glutPostRedisplay()
+def mouse(x,y):
+	global mouseX, mouseY, mouseY_ant, mouseX_ant
+	mouseX = (mouseX - mouseX_ant) * 0.005
+	mouseY = (mouseY_ant - mouseY) * 0.005
 
+	mouseY_ant,mouseX_ant = y,x
+
+	glutPostRedisplay()
+
+def scroll(button,state,x,y):
+	global distancia
+	
+	if(button == 3):
+		distancia += 2
+	elif(button == 4):
+		distancia -= 4
+
+	glutPostRedisplay()
 glutInit(argv)
 glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH)
 glutInitWindowSize(600,600)
 glutCreateWindow("Arquibancada")
 distancia = 20
 glutDisplayFunc(tela)
-glutMouseFunc(ControleMouse)
-glutKeyboardFunc (Teclado)
-glutSpecialFunc (TeclasEspeciais)
+glutMotionFunc(mouse)
+glutMouseFunc(scroll)
+glutKeyboardFunc (teclado)
 glutMainLoop()  # Inicia o laço de eventos da GLUT
-
-
-
