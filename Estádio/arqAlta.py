@@ -34,6 +34,30 @@ def degrau():
     glutSolidCube(0.5)
     glPopMatrix()
 
+def degrau2():
+    glPushMatrix()
+    glScalef(2, 700, 1.0)
+    glutSolidCube(0.5)
+    glPopMatrix()
+
+def haste():
+    # Coluna
+    glPushMatrix()
+    glColor3f(0.1,0.1,0.1)
+    glRotate(90, 1.0, 0.0, 0.0)
+    glTranslate(-6.4,3.6,-9)
+    glutSolidCylinder(0.05, 6.0, 40, 10)
+    glPopMatrix()
+
+    # Haste
+    glPushMatrix()
+    glColor3f(0.3,0.3,0.3)
+    glRotate(90, 1.0, 0.0, 0.0)
+    glRotate(-60, 0.0, 1.0, 0.0)
+    glTranslate(-9.5,3.6,-1.1)
+    glutSolidCylinder(0.03, 3.0, 40, 10)
+    glPopMatrix()
+
 
 def desenho():
 
@@ -59,22 +83,29 @@ def desenho():
     glPushMatrix()
     glRotatef(90, 1.0, 0.0, 0.0)
     glColor3f(1,1,1)
-    glScalef(0.1,80,5)
-    glTranslate(-5,0,-0.2)
+    glScalef(0.1,80,7)
+    glTranslate(-6,0,-0.2)
     glutSolidCube(0.5)
     glPopMatrix()
 
-    # Parte Alta
+    # Piso parte alta
 
     glPushMatrix()
-    glTranslate(-9.5,4.6,0.0)
+    glColor3f(0.5,0.5,0.5)
+    glScalef(2.5,1,1)
+    glTranslate(-0.75,2,0)
+    glRotatef(90, 1.0, 0.0, 0.0)
+    degrau()
+    glPopMatrix()
+
+    # Parte Alta Esquerda
+
+    glPushMatrix()
+    glTranslate(-9.5,4.6,-15)
     glRotatef(90, 1.0, 0.0, 0.0)
     contador = 0
+    glScalef(1, 0.3, 1)
     while contador <= 12:
-        if contador == 12:
-            degrau()
-            glScalef(3, 80, 1.0)
-            glTranslate(0.5,0,0.2)
         if contador%2==0:
             glColor3f(1,1,1)
             degrau()
@@ -85,6 +116,131 @@ def desenho():
             glTranslate(0.5,0,0.2)
         contador+=1
     glPopMatrix()
+
+    # Parte Alta Esquerda Com Sobra
+
+    glPushMatrix()
+    glTranslate(-9.5,4.6,8)
+    glRotatef(90, 1.0, 0.0, 0.0)
+    contador = 0
+    glScalef(1, 0.05, 1)
+    while contador <= 12:
+        if contador <= 6:
+            if contador%2==0:
+                glColor3f(1,1,1)
+                degrau()
+                glTranslate(0.5,0,0.2)
+            else:
+                glColor3f(0.1,0.1,0.1)
+                degrau()
+                glTranslate(0.5,0,0.2)
+        else:
+            if contador%2==0:
+                glColor3f(1,1,1)
+                degrau2()
+                glTranslate(0.5,0,0.2)
+            else:
+                glColor3f(0.1,0.1,0.1)
+                degrau2()
+                glTranslate(0.5,0,0.2)
+        contador+=1
+    glPopMatrix()
+
+
+
+    # Parte Alta Direita
+
+    glPushMatrix()
+    glTranslate(-9.5,4.6,15)
+    glRotatef(90, 1.0, 0.0, 0.0)
+    contador = 0
+    glScalef(1, 0.3, 1)
+    while contador <= 12:
+        if contador%2==0:
+            glColor3f(1,1,1)
+            degrau()
+            glTranslate(0.5,0,0.2)
+        else:
+            glColor3f(0.1,0.1,0.1)
+            degrau()
+            glTranslate(0.5,0,0.2)
+        contador+=1
+    glPopMatrix()
+
+    # Parte Alta Direita Com Sobra
+
+    glPushMatrix()
+    glTranslate(-9.5,4.6,-8)
+    glRotatef(90, 1.0, 0.0, 0.0)
+    contador = 0
+    glScalef(1, 0.05, 1)
+    while contador <= 12:
+        if contador <= 6:
+            if contador%2==0:
+                glColor3f(1,1,1)
+                degrau()
+                glTranslate(0.5,0,0.2)
+            else:
+                glColor3f(0.1,0.1,0.1)
+                degrau()
+                glTranslate(0.5,0,0.2)
+        else:
+            if contador%2==0:
+                glColor3f(1,1,1)
+                degrau2()
+                glTranslate(0.5,0,0.2)
+            else:
+                glColor3f(0.1,0.1,0.1)
+                degrau2()
+                glTranslate(0.5,0,0.2)
+        contador+=1
+    glPopMatrix()
+
+    # Cabines de imprensa
+
+        # BLOCO
+    glPushMatrix()
+    glColor3f(1,1,1)
+    glTranslate(-8.0,5,0)
+    glScalef(1,1.5,2.5)
+    glutSolidCube(3)  
+    glPopMatrix()
+
+        
+    glPushMatrix()
+    contador = 0
+    while contador <= 5:
+        haste()
+        glTranslate(0,0,-1.5)
+        contador+=1
+    glPopMatrix()
+
+        # TETO
+    glPushMatrix()
+    glColor3f(0.2,0.2,0.2)
+    glTranslate(-5.0,8.9,0)
+    glScalef(1,0.05,2.7)
+    glutSolidCube(3)  
+    glPopMatrix()
+    
+
+    # CORRIMÃO
+
+    glPushMatrix()
+    glColor3f(0,1,0)
+    #glRotate(90, 1.0, 0.0, 0.0)
+    glTranslate(2,4,10)
+    glutSolidCylinder(0.05, 3.0, 40, 10)
+    glPopMatrix()
+
+
+
+    # Piso Parte alta
+    #glPushMatrix()
+    #glColor3f(1,0,0)
+    #glScalef(1,1,20)
+    #glutSolidCube(2)  
+    #glPopMatrix()
 
 def iluminacao_da_cena():
     global aux1
@@ -158,19 +314,19 @@ def Teclado (tecla, x, y):
         sys.exit(0)
 
     if tecla == b'a':  # A
-        aux1 = aux1 - 0.1
+        aux1 = aux1 - 0.5
         print ("aux1 = ", aux1 )
     
     if tecla == b's': # S
-        aux1 = aux1 + 0.1
+        aux1 = aux1 + 0.5
         print ("aux1 = ", aux1 )
         
     if tecla == b'w': # W
-        aux2 = aux2 + 0.1
+        aux2 = aux2 + 0.5
         print ("aux2 = ", aux2 )
 
     if tecla == b'z': # Z
-        aux2 = aux2 - 0.1
+        aux2 = aux2 - 0.5
         print ("aux2 = ", aux2 )
     tela()
     glutPostRedisplay()
