@@ -45,7 +45,7 @@ def haste():
     glPushMatrix()
     glColor3f(0.1,0.1,0.1)
     glRotate(90, 1.0, 0.0, 0.0)
-    glTranslate(-6.4,3.6,-9)
+    glTranslate(-6.4,3.6,-7.5)
     glutSolidCylinder(0.05, 6.0, 40, 10)
     glPopMatrix()
 
@@ -54,10 +54,43 @@ def haste():
     glColor3f(0.3,0.3,0.3)
     glRotate(90, 1.0, 0.0, 0.0)
     glRotate(-60, 0.0, 1.0, 0.0)
-    glTranslate(-9.5,3.6,-1.1)
-    glutSolidCylinder(0.03, 3.0, 40, 10)
+    glTranslate(-9,3.6,1)
+    glutSolidCylinder(0.03, 1.0, 40, 10)
     glPopMatrix()
 
+def corrimao():
+    # CORRIMÃO
+
+    glPushMatrix()
+    glColor3f(0.3,0.3,0.3)
+    glTranslate(-0.6,3.5,17)
+    glutSolidCylinder(0.02, 3.0, 40, 10)
+    glPopMatrix()
+
+    glPushMatrix()
+    glColor3f(0.8,0.8,0.8)
+    glTranslate(-0.6,3.4,17)
+    glutSolidCylinder(0.02, 3.0, 40, 10)
+    glPopMatrix()
+
+    glPushMatrix()
+    glColor3f(0.8,0.8,0.8)
+    glTranslate(-0.6,3.3,17)
+    glutSolidCylinder(0.02, 3.0, 40, 10)
+    glPopMatrix()
+
+    glPushMatrix()
+    glColor3f(0.3,0.3,0.3)
+    glTranslate(-0.6,3.2,17)
+    glutSolidCylinder(0.02, 3.0, 40, 10)
+    glPopMatrix()
+
+    glPushMatrix()
+    glColor3f(0.3,0.3,0.3)
+    glRotate(90, 1.0, 0.0, 0.0)
+    glTranslate(-0.6,18,-3.5)
+    glutSolidCylinder(0.02, 0.5, 40, 10)
+    glPopMatrix()
 
 def desenho():
 
@@ -202,7 +235,7 @@ def desenho():
     glPushMatrix()
     glColor3f(1,1,1)
     glTranslate(-8.0,5,0)
-    glScalef(1,1.5,2.5)
+    glScalef(1,1.5,2.6)
     glutSolidCube(3)  
     glPopMatrix()
 
@@ -217,20 +250,20 @@ def desenho():
 
         # TETO
     glPushMatrix()
-    glColor3f(0.2,0.2,0.2)
-    glTranslate(-5.0,8.9,0)
-    glScalef(1,0.05,2.7)
+    glColor3f(0.1,0.1,0.1)
+    glTranslate(-4.2,7.4,0)
+    glScalef(1.5,0.05,2.7)
     glutSolidCube(3)  
     glPopMatrix()
     
 
-    # CORRIMÃO
-
+    
     glPushMatrix()
-    glColor3f(0,1,0)
-    #glRotate(90, 1.0, 0.0, 0.0)
-    glTranslate(2,4,10)
-    glutSolidCylinder(0.05, 3.0, 40, 10)
+    contador = 0
+    while contador <= 25:
+        corrimao()
+        glTranslate(0,0,-1.5)
+        contador+=1
     glPopMatrix()
 
 
