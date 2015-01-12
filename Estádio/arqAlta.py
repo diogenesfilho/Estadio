@@ -19,8 +19,8 @@ global aux2
 global angulo
 
 
-esqdir = 0
-cimabaixo = 0
+esqdir = 1.7
+cimabaixo = 5.1
 aux1 = 0
 aux2 = 0
 aux3 = 0
@@ -57,6 +57,67 @@ def haste():
     glTranslate(-9,3.6,1)
     glutSolidCylinder(0.03, 1.0, 40, 10)
     glPopMatrix()
+
+def janela():
+
+    glPushMatrix()
+    glColor3f(0,0,0)
+    glTranslate(-6.9,6.3,2.85)
+    glScalef(1,1,1.4)
+    glutSolidCube(1)  
+    glPopMatrix()
+
+    glPushMatrix()
+    glColor3f(0.8,0.8,0.8)
+    glTranslate(-6.8,6.3,2.85)
+    glScalef(1,1,1.4)
+    glutSolidCube(0.9)  
+    glPopMatrix()
+
+def muroDireito():
+    # MURO
+    glPushMatrix()
+    glColor3f(1,1,1)
+    glScalef(0.1,1,2.5)
+    glTranslate(-100,5.3,-3.3)
+    glutSolidCube(1)
+    glPopMatrix()
+
+    glPushMatrix()
+    glColor3f(1,1,1)
+    glTranslate(-10,6,-9.6)
+    glutSolidCylinder(0.02, 2.6, 40, 10)
+    glPopMatrix()
+
+    glPushMatrix()
+    glColor3f(1,1,1)
+    glRotate(90, 1.0, 0.0, 0.0)
+    glTranslate(-10,-8.3,-6)
+    glutSolidCylinder(0.04, 0.5, 40, 10)
+    glPopMatrix()
+
+def muroEsquerdo():
+  
+    glPushMatrix()
+    glColor3f(1,1,1)
+    glScalef(0.1,1,2.5)
+    glTranslate(-100,5.3,3.3)
+    glutSolidCube(1)
+    glPopMatrix()
+
+    glPushMatrix()
+    glColor3f(1,1,1)
+    glTranslate(-10,6,7)
+    glutSolidCylinder(0.02, 2.6, 40, 10)
+    glPopMatrix()
+
+    glPushMatrix()
+    glColor3f(1,1,1)
+    glRotate(90, 1.0, 0.0, 0.0)
+    glTranslate(-10,8.3,-6)
+    glutSolidCylinder(0.04, 0.5, 40, 10)
+    glPopMatrix()
+
 
 def corrimao():
     # CORRIMÃO
@@ -233,13 +294,22 @@ def desenho():
 
         # BLOCO
     glPushMatrix()
-    glColor3f(1,1,1)
-    glTranslate(-8.0,5,0)
+    glColor3f(0.9,0.9,0.9)
+    glTranslate(-8.0,5,-0.15)
     glScalef(1,1.5,2.6)
     glutSolidCube(3)  
     glPopMatrix()
 
+        # JANELAS
+    glPushMatrix()
+    contador = 0
+    while contador <= 4:
+        janela()
+        glTranslate(0,0,-1.5)
+        contador+=1
+    glPopMatrix()
         
+        # HASTES
     glPushMatrix()
     contador = 0
     while contador <= 5:
@@ -256,8 +326,7 @@ def desenho():
     glutSolidCube(3)  
     glPopMatrix()
     
-
-    
+    # CORRIMÕES
     glPushMatrix()
     contador = 0
     while contador <= 25:
@@ -266,8 +335,39 @@ def desenho():
         contador+=1
     glPopMatrix()
 
+    # MURO DIR
+    glPushMatrix()
+    contador = 0
+    while contador <= 8:
+        muroDireito()
+        glTranslate(0,0,-1.5)
+        contador+=1
+    glPopMatrix()
 
+    glPushMatrix() 
+    glTranslate(3.5,-1.5,2.8) 
+    #glScalef(5,1,1)
+    muroDireito()
+    glColor3f(1,0,0) 
+    glPopMatrix()
 
+    # MURO ESQ
+    glPushMatrix()
+    contador = 0
+    while contador <= 8:
+        muroEsquerdo()
+        glTranslate(0,0,1.5)
+        contador+=1
+    glPopMatrix()
+
+    glPushMatrix() 
+    glTranslate(3.5,-1.5,-2.8) 
+    #glScalef(5,1,1)
+    muroEsquerdo()
+    glColor3f(1,0,0) 
+    glPopMatrix()
+
+    
     # Piso Parte alta
     #glPushMatrix()
     #glColor3f(1,0,0)
@@ -340,27 +440,21 @@ def tela():
 def Teclado (tecla, x, y):
     global aux1
     global aux2
-    print("*** Tratamento de teclas comuns")
-    print(">>> Tecla: ",tecla)
     
     if tecla==chr(27): # ESC ?
         sys.exit(0)
 
     if tecla == b'a':  # A
-        aux1 = aux1 - 0.5
-        print ("aux1 = ", aux1 )
+        aux1 = aux1 - 2
     
     if tecla == b's': # S
-        aux1 = aux1 + 0.5
-        print ("aux1 = ", aux1 )
+        aux1 = aux1 + 2
         
     if tecla == b'w': # W
-        aux2 = aux2 + 0.5
-        print ("aux2 = ", aux2 )
+        aux2 = aux2 + 2
 
     if tecla == b'z': # Z
-        aux2 = aux2 - 0.5
-        print ("aux2 = ", aux2 )
+        aux2 = aux2 - 2
     tela()
     glutPostRedisplay()
 
@@ -368,15 +462,8 @@ def Teclado (tecla, x, y):
 def TeclasEspeciais (tecla, x, y):
     global esqdir
     global cimabaixo
-    print("*** Tratamento de teclas especiais")
-    print ("tecla: ", tecla)
-    if tecla == GLUT_KEY_F1:
-        print(">>> Tecla F1 pressionada")
-    elif tecla == GLUT_KEY_F2:
-        print(">>> Tecla F2 pressionada")
-    elif tecla == GLUT_KEY_F3:
-        print(">>> Tecla F3 pressionada")
-    elif tecla == GLUT_KEY_LEFT:
+    
+    if tecla == GLUT_KEY_LEFT:
         esqdir = esqdir - 0.1
     elif tecla == GLUT_KEY_RIGHT:
         esqdir = esqdir + 0.1
@@ -384,8 +471,7 @@ def TeclasEspeciais (tecla, x, y):
         cimabaixo = cimabaixo + 0.05
     elif tecla == GLUT_KEY_DOWN:
         cimabaixo = cimabaixo - 0.05
-    else:
-        print ("Apertou... " , tecla)
+    
     tela()
     glutPostRedisplay()   
 
