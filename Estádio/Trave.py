@@ -26,27 +26,33 @@ aux3 = 0
 aux4 = 0
 angulo = 45
 
-def traveFrente():
+def trave():
 
+    glScalef(1,1,3)
     glPushMatrix()
-    #glRotatef(90, 1.0, 0.0, 0.0)
-    glutSolidCylinder(0.05, 5, 30, 10)
 
+    rede()
+
+    glPushMatrix(0,0,-5)
+    glScalef(1.5,1,1)
     glTranslate( 0.0, 5.0, 0.0)
-    glutSolidCylinder(0.05, 5, 30, 10)
+    glRotatef(90,0,1,0)
+    rede()
     glPopMatrix()
 
-def traveTras():
-
     glPushMatrix()
-    #glRotatef(90, 1.0, 0.0, 0.0)
-    glutSolidCylinder(0.05, 2, 30, 10)
-
+    glScalef(1.5,1,1)
     glTranslate( 0.0, 5.0, 0.0)
-    glutSolidCylinder(0.05, 2, 30, 10)
+    glRotatef(90,0,0,1) 
+    rede()
+
+    glTranslate( -5.0, 5.0, 0.0)
+    rede()
+
     glPopMatrix()
 
 
+    glPopMatrix()
 
 def rede():
 
@@ -72,65 +78,30 @@ def rede():
 
     glPopMatrix()
 
-    #Estrura interna horizontal.
+    #Estrura interna vertical.
     glPushMatrix()
     glScalef(0.0, 10, 0.5)
-    glTranslate( 0.0, -0.25, -1.0)
-    for s in range(10):        
-        glTranslate( 0.0, 0.0, 1.0)
+    glTranslate( 0.0, -0.25, -0.7)
+    for s in range(11):        
+        glTranslate( 0.0, 0.0, 0.95)
         glutWireCube(0.5)
     glPopMatrix()
 
-    #Estrura interna vertical.
+    #Estrura interna horizontal.
     glRotatef(90,.1,.0,.0)
     glPushMatrix()
     glScalef(0.0, 10, 0.5)
-    glTranslate( 0.0, 0.25, -0.7)
+    glTranslate( 0.0, 0.25, -0.6)
     for s in range(10):        
-        glTranslate( 0.0, 0.0, 1.0)
+        glTranslate( 0.0, 0.0, 0.95)
         glutWireCube(0.5)
     glPopMatrix()
 
-
 def desenho():
-    tamanhoTrave = 7
 
-    glPushMatrix()
-    glRotatef(90,1,0,0)
+    glScalef(0.5,1,1)
 
-
-    glPushMatrix()
-    glTranslate(tamanhoTrave, 5.0, 0.87)
-    glScalef(1,1,0.8)
-    rede()
-    glPopMatrix()
-
-    #Cima grande.
-    glPushMatrix()
-    glTranslate(0, 5.0, 0.0)
-    glRotatef(90,0,1,0)
-    glScalef(1,1,1.2)
-    rede()
-    glPopMatrix()
-
-    #Lado B.
-    glPushMatrix()
-    glRotatef(-90,0,0,1)
-    glTranslate(0, 4.2, 0.1)
-    glScalef(1,0.85,1)
-    rede()
-    glPopMatrix()
-
-    #Lado A.
-    glPushMatrix()
-    glRotatef(-90,0,0,1)
-    glTranslate(-5, 4.2, 0.1)
-    glScalef(1,0.85,1)
-    rede()
-    glPopMatrix()
-    
-    glPopMatrix()
-    
+    trave()
 
 def iluminacao_da_cena():
     global aux1
