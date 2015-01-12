@@ -93,15 +93,12 @@ def rede():
 
 
 def desenho():
-    tamanhoTrave = 4.3
+    tamanhoTrave = 7
 
     glPushMatrix()
     glRotatef(90,1,0,0)
 
-    #Frente.
-    traveFrente()
 
-    #trás.
     glPushMatrix()
     glTranslate(tamanhoTrave, 5.0, 0.87)
     glScalef(1,1,0.8)
@@ -112,7 +109,7 @@ def desenho():
     glPushMatrix()
     glTranslate(0, 5.0, 0.0)
     glRotatef(90,0,1,0)
-    glScalef(1,1,0.5)
+    glScalef(1,1,1.2)
     rede()
     glPopMatrix()
 
@@ -130,20 +127,6 @@ def desenho():
     glTranslate(-5, 4.2, 0.1)
     glScalef(1,0.85,1)
     rede()
-    glPopMatrix()
-
-    #Cima pequena.
-    glPushMatrix()
-    glTranslate(2.5, 5.0, 0.0)
-    glRotatef(65,0,1,0)
-    glScalef(1,1,0.4)
-    rede()
-    glPopMatrix()
-
-    #Parte de tras que ficaria como segurando rede.
-    glPushMatrix()
-    glTranslate(tamanhoTrave,0,0)
-    traveTras()
     glPopMatrix()
     
     glPopMatrix()
