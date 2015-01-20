@@ -158,6 +158,7 @@ def desenho():
     # Parte Baixa
 
     glPushMatrix()
+    glScalef(1,1,2)
     glRotatef(90, 1.0, 0.0, 0.0)
     contador = 0
     while contador <= 4:
@@ -178,6 +179,7 @@ def desenho():
     glRotatef(90, 1.0, 0.0, 0.0)
     glColor3f(1,1,1)
     glScalef(0.1,80,7)
+    glScalef(1,2,1)
     glTranslate(-6,0,-0.2)
     glutSolidCube(0.5)
     glPopMatrix()
@@ -187,16 +189,19 @@ def desenho():
     glPushMatrix()
     glColor3f(0.5,0.5,0.5)
     glScalef(2.5,1,1)
+    glScalef(1,1,2)
     glTranslate(-0.75,2,0)
     glRotatef(90, 1.0, 0.0, 0.0)
     degrau()
     glPopMatrix()
 
+
     # Parte Alta Esquerda
 
     glPushMatrix()
-    glTranslate(-9.5,4.6,-15)
+    glTranslate(-9.5,4.6,23.2)
     glRotatef(90, 1.0, 0.0, 0.0)
+    glScalef(1,2.7,1)
     contador = 0
     glScalef(1, 0.3, 1)
     while contador <= 12:
@@ -211,84 +216,46 @@ def desenho():
         contador+=1
     glPopMatrix()
 
-    # Parte Alta Esquerda Com Sobra
+    # Parte Alta Esquerda
 
     glPushMatrix()
-    glTranslate(-9.5,4.6,8)
+    glTranslate(-9.5,4.6,-23.2)
     glRotatef(90, 1.0, 0.0, 0.0)
+    glScalef(1,2.7,1)
     contador = 0
-    glScalef(1, 0.05, 1)
+    glScalef(1, 0.3, 1)
     while contador <= 12:
-        if contador <= 6:
-            if contador%2==0:
-                glColor3f(1,1,1)
-                degrau()
-                glTranslate(0.5,0,0.2)
-            else:
-                glColor3f(0.1,0.1,0.1)
-                degrau()
-                glTranslate(0.5,0,0.2)
+        if contador%2==0:
+            glColor3f(1,1,1)
+            degrau()
+            glTranslate(0.5,0,0.2)
         else:
-            if contador%2==0:
-                glColor3f(1,1,1)
-                degrau2()
-                glTranslate(0.5,0,0.2)
-            else:
-                glColor3f(0.1,0.1,0.1)
-                degrau2()
-                glTranslate(0.5,0,0.2)
+            glColor3f(0.1,0.1,0.1)
+            degrau()
+            glTranslate(0.5,0,0.2)
         contador+=1
     glPopMatrix()
-
-
 
     # Parte Alta Direita
 
     glPushMatrix()
-    glTranslate(-9.5,4.6,15)
+    glTranslate(-6,3.2,0)
     glRotatef(90, 1.0, 0.0, 0.0)
+    glScalef(1,1.17,1)
     contador = 0
     glScalef(1, 0.3, 1)
-    while contador <= 12:
+    while contador <= 5:
         if contador%2==0:
-            glColor3f(1,1,1)
-            degrau()
-            glTranslate(0.5,0,0.2)
-        else:
             glColor3f(0.1,0.1,0.1)
             degrau()
             glTranslate(0.5,0,0.2)
-        contador+=1
-    glPopMatrix()
-
-    # Parte Alta Direita Com Sobra
-
-    glPushMatrix()
-    glTranslate(-9.5,4.6,-8)
-    glRotatef(90, 1.0, 0.0, 0.0)
-    contador = 0
-    glScalef(1, 0.05, 1)
-    while contador <= 12:
-        if contador <= 6:
-            if contador%2==0:
-                glColor3f(1,1,1)
-                degrau()
-                glTranslate(0.5,0,0.2)
-            else:
-                glColor3f(0.1,0.1,0.1)
-                degrau()
-                glTranslate(0.5,0,0.2)
         else:
-            if contador%2==0:
-                glColor3f(1,1,1)
-                degrau2()
-                glTranslate(0.5,0,0.2)
-            else:
-                glColor3f(0.1,0.1,0.1)
-                degrau2()
-                glTranslate(0.5,0,0.2)
+            glColor3f(1,1,1)
+            degrau()
+            glTranslate(0.5,0,0.2)
         contador+=1
     glPopMatrix()
+
 
     # Cabines de imprensa
 
@@ -338,7 +305,7 @@ def desenho():
     # MURO DIR
     glPushMatrix()
     contador = 0
-    while contador <= 8:
+    while contador <= 21:
         muroDireito()
         glTranslate(0,0,-1.5)
         contador+=1
@@ -346,7 +313,6 @@ def desenho():
 
     glPushMatrix() 
     glTranslate(3.5,-1.5,2.8) 
-    #glScalef(5,1,1)
     muroDireito()
     glColor3f(1,0,0) 
     glPopMatrix()
@@ -354,7 +320,7 @@ def desenho():
     # MURO ESQ
     glPushMatrix()
     contador = 0
-    while contador <= 8:
+    while contador <= 21:
         muroEsquerdo()
         glTranslate(0,0,1.5)
         contador+=1
@@ -362,7 +328,6 @@ def desenho():
 
     glPushMatrix() 
     glTranslate(3.5,-1.5,-2.8) 
-    #glScalef(5,1,1)
     muroEsquerdo()
     glColor3f(1,0,0) 
     glPopMatrix()
