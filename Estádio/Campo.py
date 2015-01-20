@@ -14,12 +14,14 @@ from sys import argv
 from OpenGL.GL import *
 from OpenGL.GLU import *
 from OpenGL.GLUT import *
+from PIL import Image, ImageFilter
 
 global esqdir
 global cimabaixo
 global aux1
 global aux2
 global angulo
+global textura1
 
 
 esqdir = 0
@@ -30,62 +32,126 @@ aux3 = 0
 aux4 = 0
 angulo = 45
 
+def carrega_textura():
+    global textura1
+
+    im = Image.open("campo.jpg", "r")
+    try:
+        ix, iy, image = im.size[0], im.size[1], im.tostring("raw", "RGBA", 0, -1)
+    except SystemError:
+        ix, iy, image = im.size[0], im.size[1], im.tostring("raw", "RGBX", 0, -1)
+    
+    textura1 = glGenTextures(1)
+    #glBindTexture(GL_TEXTURE_2D, textura1)
+    glPixelStorei(GL_UNPACK_ALIGNMENT, 1)
+    
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR)
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR)
+
+    
+    glTexImage2D(
+      GL_TEXTURE_2D, 0, 3, ix, iy, 0,
+      GL_RGBA, GL_UNSIGNED_BYTE, image
+      )
+
+def rede():
+
+    #Estrura externa.
+    glPushMatrix() 
+
+    #Isolando para que nao aja problemas quando rotacionar e transladar.
+    glPushMatrix()             
+    glColor3f(.1, .1, .1)
+    glutSolidCylinder(0.05, 5, 30, 10)
+
+    glTranslate( 0.0, -5.0, 0.0)
+    glutSolidCylinder(0.05, 5, 30, 10)
+    glPopMatrix()
+
+    glPushMatrix()
+    glRotatef(90, 1.0, 0.0, 0.0)
+    glutSolidCylinder(0.05, 5, 30, 10)
+
+    glTranslate( 0.0, 5.0, 0.0)
+    glutSolidCylinder(0.05, 5, 30, 10)
+    glPopMatrix()
+
+    glPopMatrix()
+
+    #Estrura interna vertical.
+    glPushMatrix()
+    glScalef(0.0, 10, 0.5)
+    glTranslate( 0.0, -0.25, -0.7)
+    for s in range(11):        
+        glTranslate( 0.0, 0.0, 0.95)
+        glutWireCube(0.5)
+    glPopMatrix()
+
+    #Estrura interna horizontal.
+    glRotatef(90,.1,.0,.0)
+    glPushMatrix()
+    glScalef(0.0, 10, 0.5)
+    glTranslate( 0.0, 0.25, -0.6)
+    for s in range(10):        
+        glTranslate( 0.0, 0.0, 0.95)
+        glutWireCube(0.5)
+    glPopMatrix()
+
+def trave():
+
+    glScalef(0.3,0.3,0.3)
+    glPushMatrix()
+
+    rede()
+
+    glPushMatrix(0,0,-5)
+    glScalef(1.5,1,1)
+    glTranslate( 0.0, 5.0, 0.0)
+    glRotatef(90,0,1,0)
+    rede()
+    glPopMatrix()
+
+    glPushMatrix()
+    glScalef(1.5,1,1)
+    glTranslate( 0.0, 5.0, 0.0)
+    glRotatef(90,0,0,1) 
+    rede()
+
+    glTranslate( -5.0, 5.0, 0.0)
+    rede()
+
+    glPopMatrix()
+
+
+    glPopMatrix()
+
+
 
 def Campo():
+    global textura1
+    carrega_textura()
+
+    glEnable(GL_TEXTURE_2D)
     glBegin(GL_POLYGON)# objeto
-    glVertex3f( 0.0, 0.0, 1.0  )  #  ponto de vertice
-    glVertex3f( 0.0, 5.0, 1.0  )  #  ponto de vertice
-    glVertex3f( 6.0, 5.0, 1.0  )  #  ponto de vertice
-    glVertex3f( 6.0, 0.0, 1.0  )  #  ponto de vertice
+
+    glVertex3f( 8.0, -1, 3.0  )  #  ponto de vertice
+    glTexCoord2f(1.0,0.0)
+    glVertex3f( 8.0, -1, -14.0  )  #  ponto de vertice
+    glTexCoord2f(1.0,1.0)
+    glVertex3f( -2.0, -1, -14.0  )  #  ponto de vertice
+    glTexCoord2f(0.0,1.0)
+    glVertex3f( -2.0, -1, 3.0  )  #  ponto de vertice
+    glTexCoord2f(0.0, 0.0)
     glEnd()
+    glDisable(GL_TEXTURE_2D)
 
 def desenho():
 
-    glColor3f(.3, .6, .1)
-    glRotatef(90, 1.0, 0.0 , 0.0)
-    glTranslate( 0.0, 1.0, -1.0)
+  
+    glPushMatrix()
     Campo()
+    glPopMatrix()
 
-
-def iluminacao_da_cena():
-    global aux1
-    luzAmbiente=[0.2,0.2,0.2,1.0]
-    luzDifusa=[0.7,0.7,0.7,1.0]  # ; // "cor"
-    luzEspecular = [1.0, 1.0, 1.0, 1.0]  #;// "brilho"
-    posicaoLuz=[aux1, 50.0, 50.0, 1.0]
-
-    #Capacidade de brilho do material
-    especularidade=[1.0,1.0,1.0,1.0]
-    especMaterial = 60;
-
-    # Especifica que a cor de fundo da janela será branca
-    glClearColor(1.0, 1.0, 1.0, 1.0)
-
-    # Habilita o modelo de colorização de Gouraud
-    glShadeModel(GL_SMOOTH)
-
-    #  Define a refletância do material
-    glMaterialfv(GL_FRONT,GL_SPECULAR, especularidade)
-    #  Define a concentração do brilho
-    glMateriali(GL_FRONT,GL_SHININESS,especMaterial)
-
-    # Ativa o uso da luz ambiente
-    glLightModelfv(GL_LIGHT_MODEL_AMBIENT, luzAmbiente)
-
-    # Define os parâmetros da luz de número 0
-    glLightfv(GL_LIGHT0, GL_AMBIENT, luzAmbiente)
-    glLightfv(GL_LIGHT0, GL_DIFFUSE, luzDifusa )
-    glLightfv(GL_LIGHT0, GL_SPECULAR, luzEspecular )
-    glLightfv(GL_LIGHT0, GL_POSITION, posicaoLuz )
-
-    # Habilita a definição da cor do material a partir da cor corrente
-    glEnable(GL_COLOR_MATERIAL)
-    # Habilita o uso de iluminação
-    glEnable(GL_LIGHTING)
-    # Habilita a luz de número 0
-    glEnable(GL_LIGHT0)
-    # Habilita o depth-buffering
-    glEnable(GL_DEPTH_TEST)
 
 
 def tela():
@@ -102,7 +168,6 @@ def tela():
     glLoadIdentity() # Inicializa sistema de coordenadas do modelo
 
     gluLookAt(sin(esqdir) * 10, 0 + cimabaixo ,cos(esqdir) * 10, aux1,aux2,0, 0,1,0) # Especifica posição do observador e do alvo
-    iluminacao_da_cena()
     glEnable(GL_DEPTH_TEST) # verifica os pixels que devem ser plotados no desenho 3d
 
     desenho()                    
