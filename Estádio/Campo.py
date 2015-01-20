@@ -54,6 +54,8 @@ def carrega_textura():
       GL_RGBA, GL_UNSIGNED_BYTE, image
       )
 
+
+
 def trave():
 
     glScalef(1,1,3)
@@ -176,6 +178,21 @@ def Campo():
     glEnd()
     glDisable(GL_TEXTURE_2D)
 
+def bandeirinha():
+    glPushMatrix()
+    glColor3f(0.8,0.8,0.8)
+    glRotatef(90, 1.0, 0.0, 0.0)
+    glTranslate(-1.1,1.8,0.7)
+    glutSolidCylinder(0.01, 0.3, 30, 30)
+    glPopMatrix()
+
+    glPushMatrix()
+    glColor3f(1,1,0)
+    glScalef(0.01,0.1,0.2)
+    glTranslate(-110,-7,8.6)
+    glutSolidCube(1)
+    glPopMatrix()
+
 def desenho():
 
     glPushMatrix()
@@ -214,7 +231,24 @@ def desenho():
     Campo()
     glPopMatrix()
 
+    glPushMatrix()
+    bandeirinha()
+    glPopMatrix()
 
+    glPushMatrix()
+    glTranslate(8.2,0,0)
+    bandeirinha()
+    glPopMatrix()
+
+    glPushMatrix()
+    glTranslate(0,0,-14.7)
+    bandeirinha()
+    glPopMatrix()
+
+    glPushMatrix()
+    glTranslate(8.2,0,-14.7)
+    bandeirinha()
+    glPopMatrix()
 
 def tela():
 
