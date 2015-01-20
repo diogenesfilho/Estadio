@@ -54,6 +54,34 @@ def carrega_textura():
       GL_RGBA, GL_UNSIGNED_BYTE, image
       )
 
+def trave():
+
+    glScalef(1,1,3)
+    glPushMatrix()
+
+    rede()
+
+    glPushMatrix(0,0,-5)
+    glScalef(1.5,1,1)
+    glTranslate( 0.0, 5.0, 0.0)
+    glRotatef(90,0,1,0)
+    rede()
+    glPopMatrix()
+
+    glPushMatrix()
+    glScalef(1.5,1,1)
+    glTranslate( 0.0, 5.0, 0.0)
+    glRotatef(90,0,0,1) 
+    rede()
+
+    glTranslate( -5.0, 5.0, 0.0)
+    rede()
+
+    glPopMatrix()
+
+
+    glPopMatrix()
+
 def rede():
 
     #Estrura externa.
@@ -61,7 +89,7 @@ def rede():
 
     #Isolando para que nao aja problemas quando rotacionar e transladar.
     glPushMatrix()             
-    glColor3f(.1, .1, .1)
+    glColor3f(1, 1, 1)
     glutSolidCylinder(0.05, 5, 30, 10)
 
     glTranslate( 0.0, -5.0, 0.0)
@@ -97,35 +125,38 @@ def rede():
         glutWireCube(0.5)
     glPopMatrix()
 
-def trave():
+def redeTrasGol():
 
-    glScalef(0.3,0.3,0.3)
+    #Estrura externa.
     glPushMatrix()
-
-    rede()
-
-    glPushMatrix(0,0,-5)
-    glScalef(1.5,1,1)
-    glTranslate( 0.0, 5.0, 0.0)
-    glRotatef(90,0,1,0)
-    rede()
+    alturaRede = 3 
+    glScalef(1,1,alturaRede)  
+    glColor3f(0.2, 0.2, 0.2)
+    glutSolidCylinder(0.08, 5, 100, 50)
+    distanciaEntreTraves = -15
+    glTranslate( 0.0, distanciaEntreTraves, 0.0)
+    glutSolidCylinder(0.05, 5, 30,30)
     glPopMatrix()
 
+    #Estrura interna horizontal.
     glPushMatrix()
-    glScalef(1.5,1,1)
-    glTranslate( 0.0, 5.0, 0.0)
-    glRotatef(90,0,0,1) 
-    rede()
-
-    glTranslate( -5.0, 5.0, 0.0)
-    rede()
-
+    glScalef(0.0, 30, 0.67)
+    glTranslate( 0.0, -0.25, -0.55)
+    for s in range(23):        
+        glTranslate( 0.0, 0.0, 1.0)
+        glutWireCube(0.5)
     glPopMatrix()
 
+    #Estrura interna .vertical
+    glRotatef(90,.1,.0,.0)
+    glPushMatrix()
+    glScalef(0.0, 30, 0.64)
+    glTranslate( 0.0, 0.255, -0.5)
+    for s in range(23):        
+        glTranslate( 0.0, 0.0, 1.0)
+        glutWireCube(0.5)
 
     glPopMatrix()
-
-
 
 def Campo():
     global textura1
@@ -133,7 +164,7 @@ def Campo():
 
     glEnable(GL_TEXTURE_2D)
     glBegin(GL_POLYGON)# objeto
-
+    glColor3f(1,1,1)
     glVertex3f( 8.0, -1, 3.0  )  #  ponto de vertice
     glTexCoord2f(1.0,0.0)
     glVertex3f( 8.0, -1, -14.0  )  #  ponto de vertice
@@ -147,7 +178,38 @@ def Campo():
 
 def desenho():
 
-  
+    glPushMatrix()
+    glRotatef(90,1,0,0)
+    glRotatef(90,0,0,1)
+    glTranslate(2.7,-1.6,-0.2)
+    alturaTrave,larguraTrave = 0.08,0.2
+    glScalef(1,larguraTrave,alturaTrave)
+    redeTrasGol()
+    glPopMatrix()
+
+    glPushMatrix()
+    glRotatef(90,1,0,0)
+    glRotatef(90,0,0,1)
+    glTranslate(-13.7,-1.6,-0.2)
+    alturaTrave,larguraTrave = 0.08,0.2
+    glScalef(1,larguraTrave,alturaTrave)
+    redeTrasGol()
+    glPopMatrix()
+
+    glPushMatrix()
+    glScalef(0.1,0.1,0.1)
+    glRotate(90, 0.0, 1.0, 0.0)
+    glTranslate(-25,-5,23)
+    trave()
+    glPopMatrix()
+
+    glPushMatrix()
+    glScalef(0.1,0.1,0.1)
+    glRotate(-90, 0.0,1.0, 0.0)
+    glTranslate(-135,-5,-38)
+    trave()
+    glPopMatrix()
+
     glPushMatrix()
     Campo()
     glPopMatrix()
