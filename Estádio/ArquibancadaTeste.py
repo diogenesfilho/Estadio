@@ -69,9 +69,23 @@ def cobertura():
 
 def degrau():
     glPushMatrix()
-    glScalef(2, 150, 1.0)
+    glScalef(2, 300, 1.0)
     glutSolidCube(0.5)
     glPopMatrix()
+
+def escadinha():
+    contador = 0
+    glPushMatrix()
+    glTranslate(-10,0,-7)
+    while contador < 13:
+        glPushMatrix()
+        glScalef(0.5,0.05,0.5)
+        degrau()
+        glPopMatrix()
+        glTranslate(0.8,0,0.5)
+        contador+=1
+    glPopMatrix()
+
 
 
 def desenho():
@@ -97,6 +111,14 @@ def desenho():
             glTranslate(0.8,0,0.5)
         contador+=1
 
+    #Escadinha aux.    
+    glPushMatrix()
+    glTranslate(0,50,0)
+    escadinha()
+    glTranslate(0,-100,0)
+    escadinha()
+    glPopMatrix()
+
     #Costa.
     glPushMatrix()
     glTranslate(-12.5,-0.5,-4)
@@ -106,14 +128,14 @@ def desenho():
 
     glPopMatrix()
 
-    #Cobertura.
+    #Cobertura lateral.
     glPushMatrix()
-    glTranslate(-0.5,-8.1,12.5) # nao altera, sobe e desce, frente e tras.
+    glTranslate(-0.5,-8.1,24.8) # nao altera, sobe e desce, frente e tras.
     glScalef(0.8, 0.6,1)
     cobertura()
+    glTranslate(0.0,0.0,-49.6)
+    cobertura()
     glPopMatrix()
-
-
 
 
 def iluminacao_da_cena():
