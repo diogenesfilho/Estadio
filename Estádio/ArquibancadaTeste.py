@@ -113,6 +113,7 @@ def desenho():
 
     #Escadinha aux.    
     glPushMatrix()
+    glColor3f(1,1,0)
     glTranslate(0,50,0)
     escadinha()
     glTranslate(0,-100,0)
@@ -121,6 +122,7 @@ def desenho():
 
     #Costa.
     glPushMatrix()
+    glColor3f(1,1,1)
     glTranslate(-12.5,-0.5,-4)
     glScalef(0.5, 1.02, 15)
     degrau()
