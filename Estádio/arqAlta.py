@@ -153,6 +153,72 @@ def corrimao():
     glutSolidCylinder(0.02, 0.5, 40, 10)
     glPopMatrix()
 
+def coluna():
+    glPushMatrix()
+    glColor3f(1,1,1)
+    glRotatef(90, 1,0,0)
+    glScalef(0.3,0.3,10)
+    glTranslate(-28.5,-120,0.1)
+    glutSolidCube(1)
+    glPopMatrix()
+
+def refletor():
+
+    #Base Vertical.
+    glRotatef(90, 1.0, 0.0 , 0.0)
+    glColor3f(0.5,0.5,0.5)
+    glutSolidCylinder(0.07, 10.0, 40, 10)
+    glRotatef(05, 1.0, 0.0 , 0.0)
+
+    #Base Luzes.
+    glTranslate( -0.75, 0.0, -1.02)
+
+    glColor3f(0.8, 0.8, 0.8) # cor RGB
+    #Luzes do meio.
+    contador = 0
+    glTranslate( -0.1, 0.1, 0.5)
+    while(contador < 6):
+        glTranslate( 0.25, 0.0, 0.0)
+        glutWireCube(0.18,100)
+        glutSolidCube(0.15)
+        contador += 1
+
+    #Luzes de cima.
+    contador = 0
+    glTranslate( -1.5, 0.0, 0.3)
+    while(contador < 6):
+        glTranslate( 0.25, 0.0, 0.0)#Nao altera. Definir espaco entre as lampadas.
+        glutWireCube(0.18,100)
+        glutSolidCube(0.15)
+        contador += 1 
+
+    #Luzes de baixo.
+    contador = 0
+    glTranslate( -1.5, 0.0, -0.6)
+    while(contador < 6):
+        glTranslate( 0.25, 0.0, 0.0)#Nao altera.Definir espaco entre as lampadas.
+        glutWireCube(0.18,100)
+        glutSolidCube(0.15)
+        contador += 1 
+
+
+    glTranslate( -0.65, -0.1, 0.3)
+    glPushMatrix()
+    glColor3f(1, 1, 1) # cor RGB
+    glScalef(3.5, 0.2, 2.0)
+    glutWireCube(0.52)
+    glPopMatrix()
+
+    #Fios que seguram as lampadas.
+    glPushMatrix()
+    glRotatef(90, 0.0, 1.0 , 0.0)
+    glTranslate( -0.3, 0.0, -0.92)
+    for s in range(3):  
+        glutSolidCylinder(0.008, 1.83, 10, 1)
+        glTranslate( 0.3, 0, 0)
+    glPopMatrix()
+
+
 def desenho():
 
     # Parte Baixa
@@ -216,7 +282,7 @@ def desenho():
         contador+=1
     glPopMatrix()
 
-    # Parte Alta Esquerda
+    # Parte Alta Direita
 
     glPushMatrix()
     glTranslate(-9.5,4.6,-23.2)
@@ -236,7 +302,7 @@ def desenho():
         contador+=1
     glPopMatrix()
 
-    # Parte Alta Direita
+    # Parte Alta Meio
 
     glPushMatrix()
     glTranslate(-6,3.2,0)
@@ -292,7 +358,51 @@ def desenho():
     glScalef(1.5,0.05,2.7)
     glutSolidCube(3)  
     glPopMatrix()
+
+        # BALCÃO
+    glPushMatrix()
+    glColor3f(1,1,1)
+    glTranslate(-6,4,3.7)
+    glScalef(1,1.2,0.1)
+    glutSolidCube(1)  
+    glPopMatrix()
+
+    glPushMatrix()
+    glColor3f(1,1,1)
+    glTranslate(-6,4,-3.7)
+    glScalef(1,1.2,0.1)
+    glutSolidCube(1)  
+    glPopMatrix()
+
+    glPushMatrix()
+    glColor3f(1,1,1)
+    glTranslate(-5.5,4,-2.1)
+    glScalef(0.1,1.2,3.1)
+    glutSolidCube(1)  
+    glPopMatrix()
     
+    glPushMatrix()
+    glColor3f(1,1,1)
+    glTranslate(-5.5,4,2.1)
+    glScalef(0.1,1.2,3.1)
+    glutSolidCube(1)  
+    glPopMatrix()
+
+    glPushMatrix()
+    glColor3f(0,0,0)
+    glTranslate(-5.7,4.6,2.1)
+    glScalef(0.3,0.1,3.1)
+    glutSolidCube(1)  
+    glPopMatrix()
+
+    glPushMatrix()
+    glColor3f(0,0,0)
+    glTranslate(-5.7,4.6,-2.1)
+    glScalef(0.3,0.1,3.1)
+    glutSolidCube(1)  
+    glPopMatrix()
+
+
     # CORRIMÕES
     glPushMatrix()
     contador = 0
@@ -311,11 +421,13 @@ def desenho():
         contador+=1
     glPopMatrix()
 
+        # perto cabine
     glPushMatrix() 
-    glTranslate(3.5,-1.5,2.8) 
+    glTranslate(3.5,-1.5,2.8)
     muroDireito()
     glColor3f(1,0,0) 
     glPopMatrix()
+
 
     # MURO ESQ
     glPushMatrix()
@@ -332,13 +444,32 @@ def desenho():
     glColor3f(1,0,0) 
     glPopMatrix()
 
-    
-    # Piso Parte alta
-    #glPushMatrix()
-    #glColor3f(1,0,0)
-    #glScalef(1,1,20)
-    #glutSolidCube(2)  
-    #glPopMatrix()
+
+    # COLUNA SUSTENTAÇÃO
+    glPushMatrix()
+    contador = 0
+    while contador <= 8:
+        coluna()
+        glTranslate(0,0,9)
+        contador+=1
+    glPopMatrix()
+
+
+    # REFLETOR DIREITO
+    glPushMatrix()
+    glTranslate(-11,15,-20)
+    glRotatef(90, 0,1,0)
+    glScalef(2,2,2)
+    refletor()
+    glPopMatrix()
+
+    # REFLETOR ESQUERDO
+    glPushMatrix()
+    glTranslate(-11,15,20)
+    glRotatef(90, 0,1,0)
+    glScalef(2,2,2)
+    refletor()
+    glPopMatrix()
 
 def iluminacao_da_cena():
     global aux1
