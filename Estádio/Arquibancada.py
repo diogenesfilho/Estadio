@@ -33,24 +33,74 @@ def grade(qtd):
 
 def bancos(qtd):
 	glPushMatrix()
-	glScale(.5,.2,2)
-	glColor(.3,.3,.3)
+	glScale(.5,.4,2)
+	
 	for i in range(qtd):
 		glutSolidCube(0.5)
 		glTranslate(0.5,0,0)
 	glPopMatrix()
 
-def desenho():
-	glPushMatrix()
-	glTranslate(0,0,124.9)
-	glRotate(90,0,1,0)
-	for i in range(10):
-		bancos(500)
-		glTranslate(0,1,1)
-	glPopMatrix()
-	
+def corrimao():
+    # CORRIMÃO
 
-	for i in range(50):
+    glPushMatrix()
+    glColor3f(0.3,0.3,0.3)
+    glTranslate(-0.6,3.5,17)
+    glutSolidCylinder(0.02, 3.0, 40, 10)
+    glPopMatrix()
+
+    glPushMatrix()
+    glColor3f(0.8,0.8,0.8)
+    glTranslate(-0.6,3.4,17)
+    glutSolidCylinder(0.02, 3.0, 40, 10)
+    glPopMatrix()
+
+    glPushMatrix()
+    glColor3f(0.8,0.8,0.8)
+    glTranslate(-0.6,3.3,17)
+    glutSolidCylinder(0.02, 3.0, 40, 10)
+    glPopMatrix()
+
+    glPushMatrix()
+    glColor3f(0.3,0.3,0.3)
+    glRotate(90, 1.0, 0.0, 0.0)
+    glTranslate(-0.6,18,-3.5)
+    glutSolidCylinder(0.02, 0.5, 40, 10)
+    glPopMatrix()
+
+def desenho():
+
+    # PISO PASSAGEM
+    glPushMatrix()
+    glTranslate(0,1,99.9)
+    glRotate(90,0,1,0)
+    for i in range(1):
+        glScale(1,1,2)
+        bancos(400)
+        glTranslate(0,1,1)
+    glPopMatrix()
+
+    glPushMatrix()
+    glTranslate(2,-15,-85)
+    glScale(5,5,5)
+    for i in range(15):
+        corrimao()
+        glTranslate(0,0,1)
+    glPopMatrix()
+
+    glPushMatrix()
+    glTranslate(0.4,1,100)
+    glRotate(90,0,1,0)
+    for i in range(9):
+        if i % 2 == 0:
+            glColor3f(0.2,0.2,0.2)
+        else:
+            glColor3f(0.8,0.8,0.8)
+        bancos(400)
+        glTranslate(0,1,1)
+    glPopMatrix()
+
+    for i in range(50):
 		glPushMatrix()
 		grade(10)
 		glRotate(-180,0,1,0)
@@ -59,6 +109,7 @@ def desenho():
 		grade(10)
 		glPopMatrix()
 		glTranslate(0,0,2)
+
 
 def iluminacao_da_cena():
     luzAmbiente=[0.2,0.2,0.2,1.0]
