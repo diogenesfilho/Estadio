@@ -31,11 +31,12 @@ class Camera:
         glutPostRedisplay()
 
     def teclas(self, tecla, x, y):
-        if tecla == b'p':
-            for i in range(1):
-                self.y += .1
-                glutPostRedisplay()
-
+        if tecla == b's':
+            self.y += .1
+        if tecla == b'd':
+            self.y -= .1
+        glutPostRedisplay()
+        
     def scroll(self, button,state,x,y):
         if(button == 3):
             self.distancia += 2

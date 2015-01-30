@@ -168,8 +168,7 @@ def refletor():
     glRotatef(90, 1.0, 0.0 , 0.0)
     glColor3f(0.5,0.5,0.5)
     glutSolidCylinder(0.07, 10.0, 40, 10)
-    glRotatef(05, 1.0, 0.0 , 0.0)
-
+    glRotatef(5, 1.0, 0.0 , 0.0)
     #Base Luzes.
     glTranslate( -0.75, 0.0, -1.02)
 
@@ -581,7 +580,7 @@ def ControleMouse(button, state, x, y):
     if (button == 4):
         if (state == GLUT_DOWN):   # Zoom-out
             angulo += 2
-    print angulo
+    print(angulo)
     tela()
     glutPostRedisplay()
 

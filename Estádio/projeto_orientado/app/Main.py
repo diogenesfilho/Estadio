@@ -17,7 +17,7 @@ class Main:
         self.camera.obstaculos = self.objetos
         glutInit(argv)
         glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH)
-        glutInitWindowSize(600, 600)
+        glutInitWindowSize(800, 800)
         glutCreateWindow("Movimento Câmera")
         self.iluminacao_da_cena()
         glutDisplayFunc(self.tela)
@@ -54,7 +54,7 @@ class Main:
         glClearColor(.4, .4, .4, .2)
         glMatrixMode(GL_PROJECTION)
         glLoadIdentity()
-        gluPerspective(self.camera.distancia,1,0.1,500)
+        gluPerspective(self.camera.distancia, 1, 0.1, 500)
         glMatrixMode(GL_MODELVIEW)
         glLoadIdentity()
         gluLookAt(self.camera.x, self.camera.y, self.camera.z, self.camera.x+self.camera.lx,
@@ -74,7 +74,11 @@ class Main:
         glFlush()
 
 if __name__ == "__main__":
-    objetos = [Objeto(pickle.load(open('../objs/arqAlta.pkl', 'rb'))),
-               Objeto(pickle.load(open('../objs/arqGrade.pkl', 'rb')))
+    objetos = [Objeto(pickle.load(open('../objs/campo.pkl', 'rb'))),
+               Objeto(pickle.load(open('../objs/arqGrade.pkl', 'rb'))),
+               Objeto(pickle.load(open('../objs/arqAlta.pkl', 'rb'))),
+               Objeto(pickle.load(open('../objs/Grade.pkl', 'rb'))),
+               Objeto(pickle.load(open('../objs/arqFrente.pkl', 'rb'))),
+               Objeto(pickle.load(open('../objs/arqTras.pkl', 'rb')))
     ]
     Main(objetos)

@@ -101,14 +101,14 @@ def desenho():
     glPopMatrix()
 
     for i in range(50):
-		glPushMatrix()
-		grade(10)
-		glRotate(-180,0,1,0)
-		glRotate(-90,0,0,1)
-		glTranslate(-9,-9,0)
-		grade(10)
-		glPopMatrix()
-		glTranslate(0,0,2)
+    	glPushMatrix()
+    	grade(10)
+    	glRotate(-180,0,1,0)
+    	glRotate(-90,0,0,1)
+    	glTranslate(-9,-9,0)
+    	grade(10)
+    	glPopMatrix()
+    	glTranslate(0,0,2)
 
 
 def iluminacao_da_cena():
