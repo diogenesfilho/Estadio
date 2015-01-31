@@ -54,9 +54,9 @@ def estrutura():
 
     #Estrura interna vertical.
     glPushMatrix()
-    glScalef(0.0, 10, 0.2)
-    glTranslate( 0.0, -0.25, -1.0)
-    for s in range(25):        
+    glScalef(0.0, 10, 0.6)
+    glTranslate( 0.0, -0.25, -0.5)
+    for s in range(8):        
         glTranslate( 0.0, 0.0, 1.0)
         glutWireCube(0.5)
     glPopMatrix()
@@ -64,9 +64,9 @@ def estrutura():
     #Estrura interna horizontal.
     glRotatef(90,.1,.0,.0)
     glPushMatrix()
-    glScalef(0.0, 10, 0.2)
-    glTranslate( 0.0, 0.25, -1.0)
-    for s in range(25):        
+    glScalef(0.0, 10, 1)
+    glTranslate( 0.0, 0.25, -0.5)
+    for s in range(5):        
         glTranslate( 0.0, 0.0, 1.0)
         glutWireCube(0.5)
 
@@ -75,12 +75,18 @@ def estrutura():
 
 def desenho():
 
+    glPushMatrix()
     estrutura()
-    
+
     glTranslate( 0.0, 5.0, 0.0)
     glRotatef(125,.0,.1,.0)
     glScalef(1.0, 1.0, 0.4)
     estrutura()
+    glPopMatrix()
+
+    glTranslate( 0.0, -5.0, 2.5)
+    glScalef(1,3,10.5)
+    glutSolidCube(0.5)
 
     
 
