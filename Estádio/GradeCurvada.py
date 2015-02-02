@@ -96,17 +96,14 @@ def grade():
 
 def desenho():
 
-    largura = 0.2
-    glScalef(1,1,largura)
+    glPushMatrix()
     contador = 0
-    glRotatef(40,0,1,0)
-    grade()
-    while (contador <= 5):
-        glRotatef(18,0,1,0)
-        glTranslate(0,0,3)
+    while (contador <= 18):
         grade()
+        glRotatef(5,0,1,0)
+        glTranslate(0,0,3)
         contador += 1
-    
+    glPopMatrix()
 
 def iluminacao_da_cena():
     global aux1
