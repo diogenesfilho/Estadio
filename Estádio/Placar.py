@@ -11,6 +11,7 @@ from sys import argv
 from OpenGL.GL import *
 from OpenGL.GLU import *
 from OpenGL.GLUT import *
+from PIL import Image, ImageFilter
 
 global esqdir
 global cimabaixo
@@ -19,7 +20,7 @@ global aux2
 global angulo
 
 
-esqdir = 0
+esqdir = 3.1
 cimabaixo = 0
 aux1 = 0
 aux2 = 0
@@ -27,10 +28,31 @@ aux3 = 0
 aux4 = 0
 angulo = 160
 
+def carrega_imagem():
+    global textura1
 
+    im = Image.open("placar.jpg", "r")
+    try:
+        ix, iy, image = im.size[0], im.size[1], im.tostring("raw", "RGBA", 0, -1)
+    except SystemError:
+        ix, iy, image = im.size[0], im.size[1], im.tostring("raw", "RGBX", 0, -1)
+    
+    textura1 = glGenTextures(1)
+    #glBindTexture(GL_TEXTURE_2D, textura1)
+    glPixelStorei(GL_UNPACK_ALIGNMENT, 1)
+    
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR)
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR)
+
+    
+    glTexImage2D(
+      GL_TEXTURE_2D, 0, 3, ix, iy, 0,
+      GL_RGBA, GL_UNSIGNED_BYTE, image
+      )
 
 def desenho():
 
+    #Coluna Esq
     glPushMatrix()
     glColor3f(1,1,1)
     glScalef(2,70,1.5)
@@ -38,6 +60,7 @@ def desenho():
     glutSolidCube(0.5)
     glPopMatrix()
 
+    #Coluna Dir
     glPushMatrix()
     glColor3f(1,1,1)
     glScalef(2,70,1.5)
@@ -45,19 +68,36 @@ def desenho():
     glutSolidCube(0.5)
     glPopMatrix()
 
+    #Bloco Princ
     glPushMatrix()
-    glColor3f(0,0.4,0)
-    glScalef(20,10,2)
-    glTranslate(0.25,2,0)
+    glColor3f(0.3,0.3,0.3)
+    glScalef(25,15,1)
+    glTranslate(0.25,1.7,0)
     glutSolidCube(1)
     glPopMatrix()
 
-    glPushMatrix()
-    glColor3f(1,0,0)
-    glScalef(3,5,2)
-    glTranslate(0,2,.5)
-    glutSolidCube(1)
-    glPopMatrix()
+    # Textura placar
+    carrega_imagem()
+
+    glEnable(GL_TEXTURE_2D)
+    glRotate(90, 0,1,0)
+    glTranslate(-12.3,25,6)
+    glScale(13,7,12)
+    glBegin(GL_QUADS)
+    glColor3f(1,1,1)
+    glTexCoord2f(1.0, 0.0) 
+    glVertex3f( 1.0, -1.0, -1.0)
+
+    glTexCoord2f(1.0, 1.0) 
+    glVertex3f( 1.0,  1.0, -1.0)
+
+    glTexCoord2f(0.0, 1.0) 
+    glVertex3f( 1.0,  1.0,  1.0)
+
+    glTexCoord2f(0.0, 0.0) 
+    glVertex3f( 1.0, -1.0,  1.0)
+    glEnd()
+    glDisable(GL_TEXTURE_2D)
 
 def iluminacao_da_cena():
     global aux1
@@ -151,6 +191,7 @@ def TeclasEspeciais (tecla, x, y):
         esqdir = esqdir - 0.1
     elif tecla == GLUT_KEY_RIGHT:
         esqdir = esqdir + 0.1
+        print esqdir
     elif tecla == GLUT_KEY_UP:
         cimabaixo = cimabaixo + 0.05
     elif tecla == GLUT_KEY_DOWN:
@@ -176,7 +217,7 @@ def ControleMouse(button, state, x, y):
 glutInit(argv)
 glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH)
 glutInitWindowSize(1024,800)
-glutCreateWindow("Arquibancada Alta")
+glutCreateWindow("Placar")
 distancia = 20
 glutDisplayFunc(tela)
 glutMouseFunc(ControleMouse)
