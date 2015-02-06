@@ -27,15 +27,13 @@ class Camera:
         if tecla == GLUT_KEY_DOWN:
             self.x -= self.lx * fraction
             self.z -= self.lz * fraction
-
-        glutPostRedisplay()
-
-    def teclas(self, tecla, x, y):
-        if tecla == b's':
+        if tecla == GLUT_KEY_F1:
             self.y += .1
-        if tecla == b'd':
+        if tecla == GLUT_KEY_F2:
             self.y -= .1
+
         glutPostRedisplay()
+
         
     def scroll(self, button,state,x,y):
         if(button == 3):

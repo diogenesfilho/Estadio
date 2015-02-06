@@ -1,6 +1,7 @@
 __author__ = 'pedro'
 from model.Camera import *
 from model.Objeto import *
+from model.Complex import *
 import pickle
 from sys import argv
 
@@ -13,7 +14,8 @@ class Main:
 
     def __init__(self, objetos):
         self.objetos = objetos
-        self.camera = Camera()
+        self.bola = Bola();self.camera = Camera();self.placar = Placar()
+        self.campo = Campo()
         self.camera.obstaculos = self.objetos
         glutInit(argv)
         glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH)
@@ -21,8 +23,8 @@ class Main:
         glutCreateWindow("Movimento Câmera")
         self.iluminacao_da_cena()
         glutDisplayFunc(self.tela)
+        glutKeyboardFunc(self.bola.teclado)
         glutMouseFunc(self.camera.scroll)
-        glutKeyboardFunc(self.camera.teclas)
         glutSpecialFunc(self.camera.teclas_especiais)
         glutMainLoop()
 
@@ -59,10 +61,13 @@ class Main:
         glLoadIdentity()
         gluLookAt(self.camera.x, self.camera.y, self.camera.z, self.camera.x+self.camera.lx,
                   self.camera.y, self.camera.z+self.camera.lz, 0.0, 1.0,  0.0)
+
         glPushMatrix()
         for i in self.objetos:
             i.executar()
         glPopMatrix()
+        glPushMatrix()
+        glTranslatef(0,-1.2,0)
         glColor3f(0.9, 0.9, 0.9)
         glBegin(GL_QUADS)
         glVertex3f(-100.0, 0.0, -100.0)
@@ -70,12 +75,14 @@ class Main:
         glVertex3f(100.0, 0.0,  100.0)
         glVertex3f(100.0, 0.0, -100.0)
         glEnd()
-
-        glFlush()
+        glPopMatrix()
+        self.campo.desenhar()
+        self.placar.desenhar()
+        self.bola.desenhar()
+        glutSwapBuffers()
 
 if __name__ == "__main__":
-    objetos = [Objeto(pickle.load(open('../objs/campo.pkl', 'rb'))),
-               Objeto(pickle.load(open('../objs/arqGrade.pkl', 'rb'))),
+    objetos = [Objeto(pickle.load(open('../objs/arqGrade.pkl', 'rb'))),
                Objeto(pickle.load(open('../objs/arqAlta.pkl', 'rb'))),
                Objeto(pickle.load(open('../objs/Grade.pkl', 'rb'))),
                Objeto(pickle.load(open('../objs/arqFrente.pkl', 'rb'))),
