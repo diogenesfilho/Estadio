@@ -36,7 +36,7 @@ def refletor():
     #Base Vertical.
     glRotatef(90, 1.0, 0.0 , 0.0)
     glutSolidCylinder(0.03, 3.0, 40, 10)
-    glRotatef(05, 1.0, 0.0 , 0.0)
+    glRotatef(5, 1.0, 0.0 , 0.0)
 
     #Base Luzes.
     glTranslate( -0.75, 0.0, -1.02)
