@@ -72,8 +72,9 @@ def estrutura():
 
     glPopMatrix()
 
+def grade():
 
-def desenho():
+    glPushMatrix()
 
     glPushMatrix()
     estrutura()
@@ -88,7 +89,50 @@ def desenho():
     glScalef(1,3,10.5)
     glutSolidCube(0.5)
 
-    
+    glPopMatrix()
+
+def curva():
+    glPushMatrix()
+    contador = 0
+    while (contador <= 18):
+        grade()
+        glRotatef(5,0,1,0)
+        glTranslate(0,0,3)
+        contador += 1
+    glPopMatrix()
+
+def seguimento(qtd):
+	for i in range(qtd):
+		glTranslate(0,0,5)
+		glPushMatrix()
+		glPushMatrix()
+		estrutura()
+
+		glTranslate( 0.0, 5.0, 0.0)
+		glRotatef(125,.0,.1,.0)
+		glScalef(1.0, 1.0, 0.4)
+		estrutura()
+		glPopMatrix()
+
+		glTranslate( 0.0, -5.0, 2.5)
+		glScalef(1,3,10.5)
+		glutSolidCube(0.5)
+		glPopMatrix()
+
+def desenho():
+	glScalef(.5,.5,.5)
+	glPushMatrix()
+	qtd = 0
+	for i in range(4):
+		if i%2 == 0:
+			qtd = 15
+		else:
+			qtd = 7
+		seguimento(qtd)
+		curva()
+		glTranslate(35,0,33)
+		glRotatef(90,0,1,0)
+	glPopMatrix()
 
 def iluminacao_da_cena():
     global aux1

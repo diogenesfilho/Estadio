@@ -80,7 +80,5 @@ class Main:
 
 if __name__ == "__main__":
     objetos = [ArqAlta(), Placar(), Campo(), ArqGrade(), ArqFrente(),
-               ArqTras(),
-               Objeto(pickle.load(open('../objs/Grade.pkl', 'rb'))),
-    ]
+               ArqTras(), Grade()]
     Main(objetos)

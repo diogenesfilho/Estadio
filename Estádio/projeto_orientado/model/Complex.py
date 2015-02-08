@@ -1186,3 +1186,115 @@ class ArqTras:
         self.cobertura()
         glPopMatrix()
         glPopMatrix()
+
+class Grade:
+    def estrutura(self):
+
+        #Estrura externa.
+        glPushMatrix()
+
+        #Isolando para que nao aja problemas quando rotacionar e transladar.
+        glPushMatrix()
+        glColor3f(.1, .1, .1)
+        glutSolidCylinder(0.05, 5, 30, 10)
+
+        glTranslate( 0.0, -5.0, 0.0)
+        glutSolidCylinder(0.05, 5, 30, 10)
+        glPopMatrix()
+
+
+        glPushMatrix()
+        glRotatef(90, 1.0, 0.0, 0.0)
+        glutSolidCylinder(0.05, 5, 30, 10)
+
+        glTranslate( 0.0, 5.0, 0.0)
+        glutSolidCylinder(0.05, 5, 30, 10)
+        glPopMatrix()
+
+        glPopMatrix()
+
+        #Estrura interna vertical.
+        glPushMatrix()
+        glScalef(0.0, 10, 0.6)
+        glTranslate( 0.0, -0.25, -0.5)
+        for s in range(8):
+            glTranslate( 0.0, 0.0, 1.0)
+            glutWireCube(0.5)
+        glPopMatrix()
+
+        #Estrura interna horizontal.
+        glRotatef(90,.1,.0,.0)
+        glPushMatrix()
+        glScalef(0.0, 10, 1)
+        glTranslate( 0.0, 0.25, -0.5)
+        for s in range(5):
+            glTranslate( 0.0, 0.0, 1.0)
+            glutWireCube(0.5)
+
+        glPopMatrix()
+
+    def grade(self):
+
+        glPushMatrix()
+
+        glPushMatrix()
+        self.estrutura()
+
+        glTranslate( 0.0, 5.0, 0.0)
+        glRotatef(125,.0,.1,.0)
+        glScalef(1.0, 1.0, 0.4)
+        self.estrutura()
+        glPopMatrix()
+
+        glTranslate( 0.0, -5.0, 2.5)
+        glScalef(1,3,10.5)
+        glutSolidCube(0.5)
+
+        glPopMatrix()
+
+    def curva(self):
+        glPushMatrix()
+        contador = 0
+        while (contador <= 18):
+            self.grade()
+            glRotatef(5,0,1,0)
+            glTranslate(0,0,3)
+            contador += 1
+        glPopMatrix()
+
+    def seguimento(self, qtd):
+        for i in range(qtd):
+            glTranslate(0,0,5)
+            glPushMatrix()
+            glPushMatrix()
+            self.estrutura()
+
+            glTranslate( 0.0, 5.0, 0.0)
+            glRotatef(125,.0,.1,.0)
+            glScalef(1.0, 1.0, 0.4)
+            self.estrutura()
+            glPopMatrix()
+
+            glTranslate( 0.0, -5.0, 2.5)
+            glScalef(1,3,10.5)
+            glutSolidCube(0.5)
+            glPopMatrix()
+
+    def executar(self):
+        glPushMatrix()
+        glScale(.2,.1,.175)
+        glTranslate(-12,-5,-50)
+        glScalef(.5,.5,.5)
+        glPushMatrix()
+        qtd = 0
+        for i in range(4):
+            if i%2 == 0:
+                qtd = 20
+            else:
+                qtd = 7
+            self.seguimento(qtd)
+            self.curva()
+            glTranslate(35,0,33)
+            glRotatef(90,0,1,0)
+        glPopMatrix()
+        glPopMatrix()
