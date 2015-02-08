@@ -14,8 +14,7 @@ class Main:
 
     def __init__(self, objetos):
         self.objetos = objetos
-        self.bola = Bola();self.camera = Camera();self.placar = Placar()
-        self.campo = Campo()
+        self.bola = Bola();self.camera = Camera()
         self.camera.obstaculos = self.objetos
         glutInit(argv)
         glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH)
@@ -76,16 +75,12 @@ class Main:
         glVertex3f(100.0, 0.0, -100.0)
         glEnd()
         glPopMatrix()
-        self.campo.desenhar()
-        self.placar.desenhar()
         self.bola.desenhar()
         glutSwapBuffers()
 
 if __name__ == "__main__":
-    objetos = [Objeto(pickle.load(open('../objs/arqGrade.pkl', 'rb'))),
-               Objeto(pickle.load(open('../objs/arqAlta.pkl', 'rb'))),
+    objetos = [ArqAlta(), Placar(), Campo(), ArqGrade(), ArqFrente(),
+               ArqTras(),
                Objeto(pickle.load(open('../objs/Grade.pkl', 'rb'))),
-               Objeto(pickle.load(open('../objs/arqFrente.pkl', 'rb'))),
-               Objeto(pickle.load(open('../objs/arqTras.pkl', 'rb')))
     ]
     Main(objetos)
