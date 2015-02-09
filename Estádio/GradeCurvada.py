@@ -92,18 +92,62 @@ def grade():
 
     glPopMatrix()
 
+def  parteCurva():
+    glScalef(0.1,0.1,0.1)
+    #Apenas para zoom.
+
+    glPushMatrix()
+
+    grade()
+    glTranslate(0,0,5.1)
+
+    glPushMatrix()
+    glScalef(1,1,0.5)
+    glRotatef(15,0,1,0)
+    grade()
+    glPopMatrix()
+
+    glTranslate(1.3,0,2.4)
+    glPushMatrix()
+    glScalef(1,1,0.5)
+    glRotatef(30,0,1,0)
+    grade()
+    glPopMatrix()
+
+    glTranslate(2.6,0,2.1)
+    glPushMatrix()
+    glScalef(1,1,0.5)
+    glRotatef(45,0,1,0)
+    grade()
+    glPopMatrix()
+
+    glTranslate(3.5,0,1.6)
+    glPushMatrix()
+    glScalef(1,1,0.5)
+    glRotatef(60,0,1,0)
+    grade()
+    glPopMatrix()
+
+    glTranslate(4.3,0,1.2)
+    glPushMatrix()
+    glScalef(1,1,0.5)
+    glRotatef(75,0,1,0)
+    grade()
+    glPopMatrix()
+
+    glTranslate(4.7,0,.5)
+    glPushMatrix()
+    glScalef(1,1,0.5)
+    glRotatef(90,0,1,0)
+    grade()
+    glPopMatrix()
+
+    glPopMatrix()
 
 
 def desenho():
+    parteCurva()
 
-    glPushMatrix()
-    contador = 0
-    while (contador <= 18):
-        grade()
-        glRotatef(5,0,1,0)
-        glTranslate(0,0,3)
-        contador += 1
-    glPopMatrix()
 
 def iluminacao_da_cena():
     global aux1

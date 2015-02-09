@@ -27,26 +27,55 @@ aux4 = 0
 angulo = 45
 
 def rede():
-    #Estrura interna horizontal.
+
     glPushMatrix()
-    glScalef(0.0, 30, 0.67)
-    glTranslate( 0.0, -0.25, -0.55)
-    for s in range(23):        
+    glScalef(1,3,3)
+
+    #Estrura externa.
+    glPushMatrix() 
+    #Isolando para que nao aja problemas quando rotacionar e transladar.
+    glPushMatrix()             
+    glColor3f(.1, .1, .1)
+    glutSolidCylinder(0.05, 5, 30, 10)
+
+    glTranslate( 0.0, -5.0, 0.0)
+    glutSolidCylinder(0.05, 5, 30, 10)
+    glPopMatrix()
+
+
+    glPushMatrix()
+    glScalef(1,1,0.3)
+
+    glRotatef(90, 1.0, 0.0, 0.0)
+    glutSolidCylinder(0.05, 5, 30, 10)
+
+    glTranslate( 0.0, 16.7, 0.0)
+    glutSolidCylinder(0.05, 5, 30, 10)
+    glPopMatrix()
+
+    glPopMatrix()
+
+    #Estrura interna vertical.
+    glPushMatrix()
+    glScalef(0.0, 10, 0.6)
+    glTranslate( 0.0, -0.25, -0.5)
+    for s in range(8):        
         glTranslate( 0.0, 0.0, 1.0)
         glutWireCube(0.5)
     glPopMatrix()
 
-    #Estrura interna .vertical
+    #Estrura interna horizontal.
     glRotatef(90,.1,.0,.0)
     glPushMatrix()
-    glScalef(0.0, 30, 0.64)
-    glTranslate( 0.0, 0.255, -0.5)
-    for s in range(23):        
+    glScalef(0.0, 10, 1)
+    glTranslate( 0.0, 0.25, -0.5)
+    for s in range(5):        
         glTranslate( 0.0, 0.0, 1.0)
         glutWireCube(0.5)
 
     glPopMatrix()
 
+    glPopMatrix()
 
 def estrutura():
 
@@ -60,16 +89,26 @@ def estrutura():
     glTranslate( 0.0, distanciaEntreTraves, 0.0)
     glutSolidCylinder(0.05, 5, 30,30)
     glPopMatrix()
-
     rede()
 
+def redeAtrasDoGol():
 
-def desenho():
+    glScalef(0.2,0.2,0.2)
 
+    glPushMatrix()
     glRotatef(90,1,0,0)
     alturaTrave,larguraTrave = 2,2
     glScalef(1,larguraTrave,alturaTrave)
     estrutura()
+
+    glTranslate(0,15,0)
+    estrutura()
+    glPopMatrix()
+
+
+def desenho():
+
+    redeAtrasDoGol()
 
 def iluminacao_da_cena():
     global aux1
