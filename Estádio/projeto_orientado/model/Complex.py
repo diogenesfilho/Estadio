@@ -8,6 +8,7 @@ class Placar:
 
     def __init__(self):
         self.textura1 = glGenTextures(1)
+        self.obj = GLuint()
 
     def carrega_imagem(self):
         im = Image.open("../objs/placar.jpg", "r")
@@ -29,7 +30,9 @@ class Placar:
           GL_RGBA, GL_UNSIGNED_BYTE, image
           )
 
-    def executar(self):
+    def desenhar(self):
+        self.obj = glGenLists(3)
+        glNewList(self.obj,GL_COMPILE)
         glPushMatrix()
         glTranslatef(8, -.25, 8)
         glScale(.05,.05,.05)
@@ -82,10 +85,16 @@ class Placar:
         glDisable(GL_TEXTURE_2D)
         glPopMatrix()
 
+        glEndList()
+
+    def executar(self):
+        glCallList(self.obj)
+
 class Campo:
 
     def __init__(self):
         self.textura1 = glGenTextures(1)
+        self.obj = GLuint()
 
     def carrega_textura(self):
         im = Image.open("../objs/campo.jpg", "r")
@@ -129,10 +138,10 @@ class Campo:
     def rede(self):
 
         glPushMatrix()
-
+        glColor3f(1, 1, 1)
         #Isolando para que nao aja problemas quando rotacionar e transladar.
         glPushMatrix()
-        glColor3f(1, 1, 1)
+
         glutSolidCylinder(0.05, 5, 30, 10)
 
         glTranslate( 0.0, -5.0, 0.0)
@@ -231,7 +240,9 @@ class Campo:
         glutSolidCube(1)
         glPopMatrix()
 
-    def executar(self):
+    def desenhar(self):
+        self.obj = glGenLists(4)
+        glNewList(self.obj,GL_COMPILE)
 
         glPushMatrix()
 
@@ -292,7 +303,14 @@ class Campo:
 
         glPopMatrix()
 
+        glEndList()
+
+    def executar(self):
+        glCallList(self.obj)
+
 class ArqAlta:
+    def __init__(self):
+        self.obj = GLuint()
 
     def degrau(self):
         glPushMatrix()
@@ -483,11 +501,15 @@ class ArqAlta:
             glTranslate( 0.3, 0, 0)
         glPopMatrix()
 
-
     def executar(self):
+        glCallList(self.obj)
+
+    def desenhar(self):
+        self.obj = glGenLists(1)
+        glNewList(self.obj, GL_COMPILE)
         glPushMatrix()
         glScalef(.2,.2,.2)
-        glTranslate(-15,-4,-25)
+        glTranslate(-26,-4,-25)
         # Parte Baixa
 
         glPushMatrix()
@@ -739,11 +761,13 @@ class ArqAlta:
         glPopMatrix()
 
         glPopMatrix()
+        glEndList()
 
 
 class Bola:
 
     def __init__(self):
+        self.obj = GLuint()
         glEnable(GL_DEPTH_TEST)
         glEnable(GL_NORMALIZE)
         glEnable(GL_COLOR_MATERIAL)
@@ -817,6 +841,9 @@ class Bola:
 
 class ArqGrade:
 
+    def __init__(self):
+        self.obj = GLuint()
+
     def grade(self, qtd):
         glRotate(-90,1,0,0)
         glPushMatrix()
@@ -864,10 +891,12 @@ class ArqGrade:
         glutSolidCylinder(0.02, 0.5, 40, 10)
         glPopMatrix()
 
-    def executar(self):
+    def desenhar(self):
+        self.obj = glGenLists(11)
+        glNewList(self.obj, GL_COMPILE)
         glPushMatrix()
         glScale(.2,.2,.2)
-        glTranslate(45,-5,-70)
+        glTranslate(50,-5,-70)
 
         # PISO PASSAGEM
         glPushMatrix()
@@ -909,8 +938,16 @@ class ArqGrade:
             glPopMatrix()
             glTranslate(0,0,2)
         glPopMatrix()
+        glEndList()
+
+    def executar(self):
+        glCallList(self.obj)
 
 class ArqFrente:
+
+    def __init__(self):
+        self.obj = GLuint()
+
     def cobertura(self):
         glPushMatrix()
 
@@ -1055,9 +1092,11 @@ class ArqFrente:
         self.degrau(150)
         glPopMatrix()
 
-    def executar(self):
+    def desenhar(self):
+        self.obj = glGenLists(1)
+        glNewList(self.obj, GL_COMPILE)
         glPushMatrix()
-        glTranslate(6.5,-.2,-16.2)
+        glTranslate(6.5,-.2,-17.2)
         glScalef(.5,.5,.5)
         glRotatef(-90,0,1,0)
         glPushMatrix()
@@ -1071,7 +1110,17 @@ class ArqFrente:
         glTranslate(0,0,7)
         self.arquibancada2()
         glPopMatrix()
+        glEndList()
+
+    def executar(self):
+        glCallList(self.obj)
+
+
 class ArqTras:
+
+    def __init__(self):
+        self.obj = GLuint()
+
     def cobertura(self):
         glPushMatrix()
 
@@ -1132,11 +1181,12 @@ class ArqTras:
             contador+=1
         glPopMatrix()
 
-    def executar(self):
+    def desenhar(self):
+        self.obj = glGenLists(9)
+        glNewList(self.obj, GL_COMPILE)
         #Apenas para testar com zoom.
         glPushMatrix()
-
-        glTranslate(3.5,-.2,5)
+        glTranslate(3.5,.4,8)
         glScalef(.2,.2,.2)
         glRotatef(90,0,1,0)
 
@@ -1153,7 +1203,7 @@ class ArqTras:
                 self.degrau()
                 glTranslate(0.8,0,0.5)
             else:
-                glColor3f(0.1,0.1,0.1)
+                glColor3f(0,0,0)
                 self.degrau()
                 glTranslate(0.8,0,0.5)
             contador+=1
@@ -1186,8 +1236,15 @@ class ArqTras:
         self.cobertura()
         glPopMatrix()
         glPopMatrix()
+        glEndList()
+
+    def executar(self):
+        glCallList(self.obj)
 
 class Grade:
+    def __init__(self):
+        self.obj = GLuint()
+
     def estrutura(self):
 
         #Estrura externa.
@@ -1248,18 +1305,58 @@ class Grade:
 
         glTranslate( 0.0, -5.0, 2.5)
         glScalef(1,3,10.5)
+        glColor(0,0,0)
         glutSolidCube(0.5)
 
         glPopMatrix()
 
     def curva(self):
         glPushMatrix()
-        contador = 0
-        while (contador <= 18):
-            self.grade()
-            glRotatef(5,0,1,0)
-            glTranslate(0,0,3)
-            contador += 1
+
+        self.grade()
+        glTranslate(0,0,5.1)
+
+        glPushMatrix()
+        glScalef(1,1,0.5)
+        glRotatef(15,0,1,0)
+        self.grade()
+        glPopMatrix()
+
+        glTranslate(1.3,0,2.4)
+        glPushMatrix()
+        glScalef(1,1,0.5)
+        glRotatef(30,0,1,0)
+        self.grade()
+        glPopMatrix()
+
+        glTranslate(2.6,0,2.1)
+        glPushMatrix()
+        glScalef(1,1,0.5)
+        glRotatef(45,0,1,0)
+        self.grade()
+        glPopMatrix()
+
+        glTranslate(3.5,0,1.6)
+        glPushMatrix()
+        glScalef(1,1,0.5)
+        glRotatef(60,0,1,0)
+        self.grade()
+        glPopMatrix()
+
+        glTranslate(4.3,0,1.2)
+        glPushMatrix()
+        glScalef(1,1,0.5)
+        glRotatef(75,0,1,0)
+        self.grade()
+        glPopMatrix()
+
+        glTranslate(4.7,0,.5)
+        glPushMatrix()
+        glScalef(1,1,0.5)
+        glRotatef(90,0,1,0)
+        self.grade()
+        glPopMatrix()
+
         glPopMatrix()
 
     def seguimento(self, qtd):
@@ -1267,6 +1364,7 @@ class Grade:
             glTranslate(0,0,5)
             glPushMatrix()
             glPushMatrix()
+            glColor(0,0,0)
             self.estrutura()
 
             glTranslate( 0.0, 5.0, 0.0)
@@ -1277,24 +1375,32 @@ class Grade:
 
             glTranslate( 0.0, -5.0, 2.5)
             glScalef(1,3,10.5)
+            glColor(0,0,0)
             glutSolidCube(0.5)
             glPopMatrix()
 
-    def executar(self):
+    def desenhar(self):
+        self.obj = glGenLists(2)
+        glNewList(self.obj,GL_COMPILE)
         glPushMatrix()
+        glColor(0,0,0)
         glScale(.2,.1,.175)
-        glTranslate(-12,-5,-50)
+        glTranslate(-11,-7,-74)
         glScalef(.5,.5,.5)
         glPushMatrix()
         qtd = 0
         for i in range(4):
             if i%2 == 0:
-                qtd = 20
+                qtd = 35
             else:
-                qtd = 7
+                qtd = 15
             self.seguimento(qtd)
             self.curva()
-            glTranslate(35,0,33)
+            glTranslate(16,0,13)
             glRotatef(90,0,1,0)
         glPopMatrix()
         glPopMatrix()
+        glEndList()
+
+    def executar(self):
+        glCallList(self.obj)

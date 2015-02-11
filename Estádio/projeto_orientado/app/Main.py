@@ -14,18 +14,32 @@ class Main:
 
     def __init__(self, objetos):
         self.objetos = objetos
-        self.bola = Bola();self.camera = Camera()
+        self.bola = Bola()
+        self.camera = Camera()
         self.camera.obstaculos = self.objetos
         glutInit(argv)
         glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH)
         glutInitWindowSize(800, 800)
         glutCreateWindow("Movimento Câmera")
         self.iluminacao_da_cena()
+        for i in range(7):
+            self.objetos[i].desenhar()
         glutDisplayFunc(self.tela)
         glutKeyboardFunc(self.bola.teclado)
         glutMouseFunc(self.camera.scroll)
         glutSpecialFunc(self.camera.teclas_especiais)
+        glutReshapeFunc(self.resize)
         glutMainLoop()
+
+    def resize(self, width, height):
+        if height == 0:                        # Prevent A Divide By Zero If The Window Is Too Small
+            height = 1
+
+        glViewport(0, 0, width, height)        # Reset The Current Viewport And Perspective Transformation
+        glMatrixMode(GL_PROJECTION)
+        glLoadIdentity()
+        gluPerspective(45.0, float(width)/float(height), 0.1, 100.0)
+        glMatrixMode(GL_MODELVIEW)
 
     def iluminacao_da_cena(self):
         luzAmbiente = [.2, .2, .2, 1]
@@ -79,6 +93,6 @@ class Main:
         glutSwapBuffers()
 
 if __name__ == "__main__":
-    objetos = [ArqAlta(), Placar(), Campo(), ArqGrade(), ArqFrente(),
-               ArqTras(), Grade()]
+    objetos = [ArqAlta(), Grade(), Placar(), Campo(), ArqGrade(), ArqFrente(),
+               ArqTras()]
     Main(objetos)
