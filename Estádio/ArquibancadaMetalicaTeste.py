@@ -24,23 +24,23 @@ obj = GLuint()
 
 
 def grade(qtd):
-	glRotate(-90,1,0,0)
-	glPushMatrix()
-	glColor(0,0,0)
-	for i in range(qtd):
-		glutSolidCylinder(0.08,(i+1),10,10)
-		glTranslate(1,0,0)
-	glPopMatrix()
-	glRotate(90,1,0,0)
+    glRotate(-90,1,0,0)
+    glPushMatrix()
+    glColor(0,0,0)
+    for i in range(qtd):
+        glutSolidCylinder(0.08,(i+1),10,10)
+        glTranslate(1,0,0)
+    glPopMatrix()
+    glRotate(90,1,0,0)
 
 def bancos(qtd):
-	glPushMatrix()
-	glScale(.5,.4,2)
-	
-	for i in range(qtd):
-		glutSolidCube(0.5)
-		glTranslate(0.5,0,0)
-	glPopMatrix()
+    glPushMatrix()
+    glScale(.5,.4,2)
+    
+    for i in range(qtd):
+        glutSolidCube(0.5)
+        glTranslate(0.5,0,0)
+    glPopMatrix()
 
 def corrimao():
     # CORRIMÃO
@@ -71,56 +71,61 @@ def corrimao():
     glPopMatrix()
 
 def desenho():
-	global obj
-	obj = glGenLists(1)
-	glNewList(obj, GL_COMPILE)
+    global obj
+    obj = glGenLists(1)
+    glNewList(obj, GL_COMPILE)
 
-	# PISO PASSAGEM
-	glPushMatrix()
-	glTranslate(0,1,99.9)
-	glRotate(90,0,1,0)
-	for i in range(1):
-		glScale(1,1,2)
-		bancos(400)
-		glTranslate(0,1,1)
-	glPopMatrix()
+    # PISO PASSAGEM
 
-	glPushMatrix()
-	glTranslate(2,-15,-85)
-	glScale(5,5,5)
-	for i in range(15):
-		corrimao()
-		glTranslate(0,0,1)
-	glPopMatrix()
+    glPushMatrix()
+    glTranslate(0,1,99.9)
+    glRotate(90,0,1,0)
+    for i in range(1):
+        glScale(1,1,2)
+        bancos(400)
+        glTranslate(0,1,1)
+        glColor3f(3,0,0) # <- Apague o chapéu aqui.
+        glRotate(90,1,0,0)
+        glTranslate(0,3.5,-8)
+        bancos(400)
+    glPopMatrix()
 
-	glPushMatrix()
-	glTranslate(0.4,1,100)
-	glRotate(90,0,1,0)
-	for i in range(9):
-		if i % 2 == 0:
-			glColor3f(0.2,0.2,0.2)
-		else:
-			glColor3f(0.8,0.8,0.8)
-		bancos(400)
-		glTranslate(0,1,1)
+    glPushMatrix()
+    glTranslate(2,-15,-85)
+    glScale(5,5,5)
+    for i in range(15):
+        corrimao()
+        glTranslate(0,0,1)
+    glPopMatrix()
 
-	glPopMatrix()
+    glPushMatrix()
+    glTranslate(0.4,1,100)
+    glRotate(90,0,1,0)
+    for i in range(9):
+        if i % 2 == 0:
+            glColor3f(0.2,0.2,0.2)
+        else:
+            glColor3f(0.8,0.8,0.8)
+        bancos(400)
+        glTranslate(0,1,1)
 
-	for i in range(50):
-		glPushMatrix()
-		grade(10)
-		glRotate(-180,0,1,0)
-		glRotate(-90,0,0,1)
-		glTranslate(-9,-9,0)
-		grade(10)
-		glPopMatrix()
-		glTranslate(0,0,2)
+    glPopMatrix()
 
-	glEndList()
+    for i in range(50):
+        glPushMatrix()
+        grade(10)
+        glRotate(-180,0,1,0)
+        glRotate(-90,0,0,1)
+        glTranslate(-9,-9,0)
+        grade(10)
+        glPopMatrix()
+        glTranslate(0,0,2)
+
+    glEndList()
 
 def executar():
-	global obj
-	glCallList(obj)
+    global obj
+    glCallList(obj)
 
 
 def iluminacao_da_cena():
@@ -172,7 +177,7 @@ def tela():
     glMatrixMode(GL_MODELVIEW) # Especifica sistema de coordenadas do modelo
     glLoadIdentity() # Inicializa sistema de coordenadas do modelo
     gluLookAt(sin(esqdir) * 10, cimabaixo ,cos(esqdir) * 10, mouseX,mouseY,0, 0,1,0) # Especifica posição do observador e do alvo
-    iluminacao_da_cena()
+    #iluminacao_da_cena()
     glEnable(GL_DEPTH_TEST) # verifica os pixels que devem ser plotados no desenho 3d
 
     executar()                   
@@ -192,23 +197,23 @@ def teclado(tecla,x,y):
     glutPostRedisplay()   
 
 def mouse(x,y):
-	global mouseX, mouseY, mouseY_ant, mouseX_ant
-	mouseX = (mouseX - mouseX_ant) * 0.005
-	mouseY = (mouseY_ant - mouseY) * 0.005
+    global mouseX, mouseY, mouseY_ant, mouseX_ant
+    mouseX = (mouseX - mouseX_ant) * 0.005
+    mouseY = (mouseY_ant - mouseY) * 0.005
 
-	mouseY_ant,mouseX_ant = y,x
+    mouseY_ant,mouseX_ant = y,x
 
-	glutPostRedisplay()
+    glutPostRedisplay()
 
 def scroll(button,state,x,y):
-	global distancia
-	
-	if(button == 3):
-		distancia += 2
-	elif(button == 4):
-		distancia -= 4
+    global distancia
+    
+    if(button == 3):
+        distancia += 2
+    elif(button == 4):
+        distancia -= 4
 
-	glutPostRedisplay()
+    glutPostRedisplay()
 glutInit(argv)
 glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH)
 glutInitWindowSize(600,600)
