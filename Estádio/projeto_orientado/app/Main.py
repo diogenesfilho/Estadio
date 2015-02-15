@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*- 
 __author__ = 'pedro'
 from Camera import *
 from Objeto import *

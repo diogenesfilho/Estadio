@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*- 
 __author__ = 'pedro'
 
 from OpenGL.GL import *
