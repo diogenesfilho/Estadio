@@ -15,10 +15,12 @@ from OpenGL.GLUT import *
 global esqdir,cimabaixo
 global mouseX, mouseY,mouseX_ant, mouseY_ant
 global distancia
+global obj
 
 esqdir,cimabaixo = 0,0
 mouseY,mouseX,mouseX_ant,mouseY_ant = .0,.0,.0,.0
 distancia = 20
+obj = GLuint()
 
 
 def grade(qtd):
@@ -69,46 +71,54 @@ def corrimao():
     glPopMatrix()
 
 def desenho():
+	global obj
+	obj = glGenLists(1)
+	glNewList(obj, GL_COMPILE)
 
-    # PISO PASSAGEM
-    glPushMatrix()
-    glTranslate(0,1,99.9)
-    glRotate(90,0,1,0)
-    for i in range(1):
-        glScale(1,1,2)
-        bancos(400)
-        glTranslate(0,1,1)
-    glPopMatrix()
+	# PISO PASSAGEM
+	glPushMatrix()
+	glTranslate(0,1,99.9)
+	glRotate(90,0,1,0)
+	for i in range(1):
+		glScale(1,1,2)
+		bancos(400)
+		glTranslate(0,1,1)
+	glPopMatrix()
 
-    glPushMatrix()
-    glTranslate(2,-15,-85)
-    glScale(5,5,5)
-    for i in range(15):
-        corrimao()
-        glTranslate(0,0,1)
-    glPopMatrix()
+	glPushMatrix()
+	glTranslate(2,-15,-85)
+	glScale(5,5,5)
+	for i in range(15):
+		corrimao()
+		glTranslate(0,0,1)
+	glPopMatrix()
 
-    glPushMatrix()
-    glTranslate(0.4,1,100)
-    glRotate(90,0,1,0)
-    for i in range(9):
-        if i % 2 == 0:
-            glColor3f(0.2,0.2,0.2)
-        else:
-            glColor3f(0.8,0.8,0.8)
-        bancos(400)
-        glTranslate(0,1,1)
-    glPopMatrix()
+	glPushMatrix()
+	glTranslate(0.4,1,100)
+	glRotate(90,0,1,0)
+	for i in range(9):
+		if i % 2 == 0:
+			glColor3f(0.2,0.2,0.2)
+		else:
+			glColor3f(0.8,0.8,0.8)
+		bancos(400)
+		glTranslate(0,1,1)
+	glPopMatrix()
 
-    for i in range(50):
-    	glPushMatrix()
-    	grade(10)
-    	glRotate(-180,0,1,0)
-    	glRotate(-90,0,0,1)
-    	glTranslate(-9,-9,0)
-    	grade(10)
-    	glPopMatrix()
-    	glTranslate(0,0,2)
+	for i in range(50):
+		glPushMatrix()
+		grade(10)
+		glRotate(-180,0,1,0)
+		glRotate(-90,0,0,1)
+		glTranslate(-9,-9,0)
+		grade(10)
+		glPopMatrix()
+		glTranslate(0,0,2)
+	glEndList()
+
+def executar():
+	global obj
+	glCallList(obj)
 
 
 def iluminacao_da_cena():
@@ -163,7 +173,7 @@ def tela():
     iluminacao_da_cena()
     glEnable(GL_DEPTH_TEST) # verifica os pixels que devem ser plotados no desenho 3d
 
-    desenho()                    
+    executar()                   
     glFlush()                    # Aplica o desenho
 
 def teclado(tecla,x,y):
@@ -202,6 +212,7 @@ glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH)
 glutInitWindowSize(600,600)
 glutCreateWindow("Arquibancada")
 distancia = 20
+desenho()
 glutDisplayFunc(tela)
 glutMotionFunc(mouse)
 glutMouseFunc(scroll)

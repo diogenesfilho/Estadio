@@ -12,7 +12,7 @@ class Camera:
         self.distancia = 20
 
     def teclas_especiais(self, tecla, x, y):
-        fraction = .1
+        fraction = .3
         if tecla == GLUT_KEY_LEFT:
             self.angulo -= 0.02
             self.lx = sin(self.angulo)

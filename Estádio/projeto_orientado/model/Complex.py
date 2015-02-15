@@ -34,7 +34,7 @@ class Placar:
         self.obj = glGenLists(3)
         glNewList(self.obj,GL_COMPILE)
         glPushMatrix()
-        glTranslatef(8, -.25, 8)
+        glTranslatef(12, -.25, 8)
         glScale(.05,.05,.05)
         glRotate(35, 0, 1, 0)
         #Coluna Esq
@@ -180,13 +180,12 @@ class Campo:
     def redeTrasGol(self):
 
         glPushMatrix()
-        alturaRede = 3
-        glScalef(1, 1, alturaRede)
+        glScalef(1, 1, 3)
         glColor3f(0.2, 0.2, 0.2)
-        glutSolidCylinder(0.08, 5, 100, 50)
+        glutSolidCylinder(0.02, 5, 100, 50)
         distanciaEntreTraves = -15
         glTranslate( 0.0, distanciaEntreTraves, 0.0)
-        glutSolidCylinder(0.05, 5, 30, 30)
+        glutSolidCylinder(0.015, 5, 30, 30)
         glPopMatrix()
 
         #Estrura interna horizontal.
@@ -1096,8 +1095,8 @@ class ArqFrente:
         self.obj = glGenLists(1)
         glNewList(self.obj, GL_COMPILE)
         glPushMatrix()
-        glTranslate(6.5,-.2,-17.2)
-        glScalef(.5,.5,.5)
+        glTranslate(6.5,.1,-17.2)
+        glScalef(.5,.7,.5)
         glRotatef(-90,0,1,0)
         glPushMatrix()
         self.arquibancada()
@@ -1385,13 +1384,13 @@ class Grade:
         glPushMatrix()
         glColor(0,0,0)
         glScale(.2,.1,.175)
-        glTranslate(-11,-7,-74)
+        glTranslate(-11,-7.45,-77)
         glScalef(.5,.5,.5)
         glPushMatrix()
         qtd = 0
         for i in range(4):
             if i%2 == 0:
-                qtd = 35
+                qtd = 36
             else:
                 qtd = 15
             self.seguimento(qtd)
