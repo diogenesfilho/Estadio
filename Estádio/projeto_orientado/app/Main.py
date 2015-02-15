@@ -1,7 +1,7 @@
 __author__ = 'pedro'
-from model.Camera import *
-from model.Objeto import *
-from model.Complex import *
+from Camera import *
+from Objeto import *
+from Complex import *
 import pickle
 from sys import argv
 
