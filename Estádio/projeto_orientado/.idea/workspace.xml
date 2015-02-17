@@ -12,7 +12,7 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/Estadio$Main.coverage" NAME="Main Coverage Results" MODIFIED="1423683920096" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app" />
+    <SUITE FILE_PATH="coverage/Estadio$Main.coverage" NAME="Main Coverage Results" MODIFIED="1424211658589" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -26,37 +26,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Camera.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model/Camera.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="43" column="27" selection-start="1206" selection-end="1206" vertical-scroll-proportion="0.0" vertical-offset="774" max-vertical-offset="882">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Objeto.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model/Objeto.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="0" selection-start="265" selection-end="265" vertical-scroll-proportion="0.0" vertical-offset="252" max-vertical-offset="630">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Main.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="86" column="30" selection-start="2963" selection-end="2963" vertical-scroll-proportion="0.0" vertical-offset="1548" max-vertical-offset="1854">
+            <state line="2" column="5" selection-start="51" selection-end="51" vertical-scroll-proportion="0.0" vertical-offset="864" max-vertical-offset="1872">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="Complex.py" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/model/Complex.py">
+        <entry file="file://$PROJECT_DIR$/app/Complex.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1096" column="22" selection-start="27599" selection-end="27599" vertical-scroll-proportion="-3.998395" vertical-offset="22165" max-vertical-offset="25326">
+            <state line="820" column="0" selection-start="20697" selection-end="20697" vertical-scroll-proportion="0.22413793" vertical-offset="14602" max-vertical-offset="25326">
               <folding />
             </state>
           </provider>
@@ -78,17 +60,17 @@
         <option value="$PROJECT_DIR$/objs/arqAlta.pkl" />
         <option value="$PROJECT_DIR$/objs/arqFrente.pkl" />
         <option value="$PROJECT_DIR$/objs/arqTras.pkl" />
-        <option value="$PROJECT_DIR$/app/Main.py" />
         <option value="$PROJECT_DIR$/model/Camera.py" />
         <option value="$PROJECT_DIR$/model/Complex.py" />
+        <option value="$PROJECT_DIR$/app/Main.py" />
+        <option value="$PROJECT_DIR$/app/Complex.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-1" />
-    <option name="y" value="-4" />
-    <option name="width" value="1368" />
-    <option name="height" value="773" />
+    <option name="y" value="24" />
+    <option name="width" value="1366" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -148,20 +130,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Estadio" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="projeto_orientado" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -189,6 +157,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/.." />
       <recent name="$PROJECT_DIR$/objs" />
     </key>
   </component>
@@ -383,11 +352,11 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="-4" width="1368" height="773" extended-state="6" />
+    <frame x="0" y="24" width="1366" height="744" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29425114" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30332828" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -423,44 +392,9 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/model/Camera.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="35" selection-start="523" selection-end="523" vertical-scroll-proportion="0.0" vertical-offset="342" max-vertical-offset="882">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/Objeto.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="0" selection-start="265" selection-end="265" vertical-scroll-proportion="0.0" vertical-offset="252" max-vertical-offset="630">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="25" column="38" selection-start="653" selection-end="653" vertical-scroll-proportion="0.0" vertical-offset="450" max-vertical-offset="1710">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/Complex.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1184" column="31" selection-start="29807" selection-end="29807" vertical-scroll-proportion="0.0" vertical-offset="21071" max-vertical-offset="25398">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/Camera.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="39" selection-start="487" selection-end="487" vertical-scroll-proportion="0.0" vertical-offset="324" max-vertical-offset="864">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/Objeto.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="0" selection-start="265" selection-end="265" vertical-scroll-proportion="0.0" vertical-offset="252" max-vertical-offset="630">
           <folding />
         </state>
       </provider>
@@ -472,51 +406,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/Complex.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1184" column="31" selection-start="29807" selection-end="29807" vertical-scroll-proportion="0.0" vertical-offset="21071" max-vertical-offset="25398">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/Camera.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="0" selection-start="274" selection-end="274" vertical-scroll-proportion="0.0" vertical-offset="216" max-vertical-offset="882">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/Objeto.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="0" selection-start="265" selection-end="265" vertical-scroll-proportion="0.0" vertical-offset="252" max-vertical-offset="630">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="20" column="36" selection-start="500" selection-end="500" vertical-scroll-proportion="0.0" vertical-offset="360" max-vertical-offset="1800">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/Complex.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="144" column="0" selection-start="3691" selection-end="3691" vertical-scroll-proportion="0.0" vertical-offset="54" max-vertical-offset="24336">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/Camera.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="0" selection-start="274" selection-end="274" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="882">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/Objeto.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="0" selection-start="265" selection-end="265" vertical-scroll-proportion="0.0" vertical-offset="252" max-vertical-offset="630">
           <folding />
         </state>
       </provider>
@@ -528,44 +420,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/Complex.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1291" column="24" selection-start="32527" selection-end="32527" vertical-scroll-proportion="0.0" vertical-offset="22849" max-vertical-offset="23490">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/Camera.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="0" selection-start="274" selection-end="274" vertical-scroll-proportion="0.0" vertical-offset="216" max-vertical-offset="882">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/Objeto.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="0" selection-start="265" selection-end="265" vertical-scroll-proportion="0.0" vertical-offset="252" max-vertical-offset="630">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="81" column="25" selection-start="2710" selection-end="2710" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1584">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/Camera.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="0" selection-start="274" selection-end="274" vertical-scroll-proportion="0.0" vertical-offset="216" max-vertical-offset="918">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/Objeto.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="0" selection-start="265" selection-end="265" vertical-scroll-proportion="0.0" vertical-offset="252" max-vertical-offset="630">
           <folding />
         </state>
       </provider>
@@ -577,37 +434,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/Camera.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="0" selection-start="274" selection-end="274" vertical-scroll-proportion="0.0" vertical-offset="216" max-vertical-offset="918">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/Objeto.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="28" selection-start="239" selection-end="239" vertical-scroll-proportion="0.0" vertical-offset="198" max-vertical-offset="630">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="78" column="69" selection-start="2674" selection-end="2674" vertical-scroll-proportion="0.0" vertical-offset="1404" max-vertical-offset="1584">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/Camera.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="0" selection-start="274" selection-end="274" vertical-scroll-proportion="0.0" vertical-offset="216" max-vertical-offset="918">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/Objeto.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="28" selection-start="239" selection-end="239" vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="630">
           <folding />
         </state>
       </provider>
@@ -619,37 +448,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/Camera.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="8" selection-start="1070" selection-end="1070" vertical-scroll-proportion="0.0" vertical-offset="684" max-vertical-offset="918">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/Objeto.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="23" selection-start="45" selection-end="45" vertical-scroll-proportion="0.0" vertical-offset="36" max-vertical-offset="630">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="56" column="45" selection-start="1840" selection-end="1840" vertical-scroll-proportion="0.0" vertical-offset="1008" max-vertical-offset="1440">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/Camera.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="8" selection-start="1070" selection-end="1070" vertical-scroll-proportion="0.0" vertical-offset="684" max-vertical-offset="900">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/Objeto.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="23" selection-start="45" selection-end="45" vertical-scroll-proportion="0.0" vertical-offset="36" max-vertical-offset="630">
           <folding />
         </state>
       </provider>
@@ -661,20 +462,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/Camera.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="20" selection-start="20" selection-end="20" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="900">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/Objeto.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="23" selection-start="45" selection-end="45" vertical-scroll-proportion="0.0" vertical-offset="36" max-vertical-offset="630">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="18" column="41" selection-start="406" selection-end="406" vertical-scroll-proportion="0.0" vertical-offset="324" max-vertical-offset="1404">
@@ -682,37 +469,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/Camera.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="20" selection-start="20" selection-end="20" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="900">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/Objeto.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="23" selection-start="45" selection-end="45" vertical-scroll-proportion="0.0" vertical-offset="36" max-vertical-offset="630">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="18" column="41" selection-start="406" selection-end="406" vertical-scroll-proportion="0.0" vertical-offset="324" max-vertical-offset="1404">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/Camera.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="20" selection-start="20" selection-end="20" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="900">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/Objeto.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="23" selection-start="45" selection-end="45" vertical-scroll-proportion="0.0" vertical-offset="36" max-vertical-offset="630">
           <folding />
         </state>
       </provider>
@@ -724,20 +483,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/Camera.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="20" selection-start="20" selection-end="20" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="900">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/Objeto.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="0" selection-start="302" selection-end="302" vertical-scroll-proportion="0.0" vertical-offset="42" max-vertical-offset="630">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="9" column="0" selection-start="186" selection-end="186" vertical-scroll-proportion="0.0" vertical-offset="162" max-vertical-offset="1530">
@@ -745,35 +490,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="461" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/Camera.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="27" selection-start="1206" selection-end="1206" vertical-scroll-proportion="0.0" vertical-offset="400" max-vertical-offset="864">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="86" column="30" selection-start="2963" selection-end="2963" vertical-scroll-proportion="0.0" vertical-offset="1246" max-vertical-offset="1710">
+        <state line="2" column="5" selection-start="51" selection-end="51" vertical-scroll-proportion="0.0" vertical-offset="864" max-vertical-offset="1872">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/Objeto.py">
+    <entry file="file://$PROJECT_DIR$/app/Complex.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="0" selection-start="265" selection-end="265" vertical-scroll-proportion="0.0" vertical-offset="63" max-vertical-offset="594">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/Complex.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1096" column="22" selection-start="27599" selection-end="27599" vertical-scroll-proportion="-3.998395" vertical-offset="22165" max-vertical-offset="25326">
+        <state line="820" column="0" selection-start="20697" selection-end="20697" vertical-scroll-proportion="0.22413793" vertical-offset="14602" max-vertical-offset="25326">
           <folding />
         </state>
       </provider>

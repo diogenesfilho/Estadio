@@ -820,20 +820,19 @@ class Bola:
         glutSwapBuffers()
 
     def teclado(self, tecla, x, y):
-
-        if tecla == b'a':
+        if tecla == b'a' and self.axisX >= -1:
             self.esqdir += - 20
             self.axisX -= .1
 
-        if tecla == b's':
+        if tecla == b's'and self.axisZ <= 1.7:
             self.cimabaixo += - 20
             self.axisZ += .1
 
-        if tecla == b'w':
+        if tecla == b'w' and self.axisZ >= -12.6:
             self.cimabaixo += + 20
             self.axisZ -= .1
 
-        if tecla == b'd':
+        if tecla == b'd' and self.axisX <= 6.9:
             self.esqdir += + 20
             self.axisX += .1
 
