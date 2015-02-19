@@ -35,7 +35,7 @@ class Placar:
         self.obj = glGenLists(3)
         glNewList(self.obj,GL_COMPILE)
         glPushMatrix()
-        glTranslatef(12, -.25, 8)
+        glTranslatef(12, -.15, 7)
         glScale(.05,.05,.05)
         glRotate(35, 0, 1, 0)
         #Coluna Esq
@@ -57,7 +57,7 @@ class Placar:
         #Bloco Princ
         glPushMatrix()
         glColor3f(0.3,0.3,0.3)
-        glScalef(25,15,1)
+        glScalef(25,14,1)
         glTranslate(0.25,1.7,0)
         glutSolidCube(1)
         glPopMatrix()
@@ -67,7 +67,7 @@ class Placar:
 
         glEnable(GL_TEXTURE_2D)
         glRotate(90, 0,1,0)
-        glTranslate(-12.3,25,6)
+        glTranslate(-12.3,24,6)
         glScale(13,7,12)
         glBegin(GL_QUADS)
         glColor3f(1,1,1)
@@ -111,7 +111,8 @@ class Campo:
         glTexImage2D(GL_TEXTURE_2D, 0, 3, ix, iy, 0, GL_RGBA, GL_UNSIGNED_BYTE, image)
 
     def trave(self):
-        glScalef(1, 1, 3)
+        glTranslate(4,0,0)
+        glScalef(0.4, 1, 3)
         glPushMatrix()
 
         self.rede()
@@ -226,11 +227,13 @@ class Campo:
         glDisable(GL_TEXTURE_2D)
 
     def bandeirinha(self):
+
+
         glPushMatrix()
         glColor3f(0.8, 0.8, 0.8)
         glRotatef(90, 1.0, 0.0, 0.0)
         glTranslate(-1.1, 1.8, 0.7)
-        glutSolidCylinder(0.01, 0.3, 30, 30)
+        glutSolidCylinder(0.004, 0.3, 30, 30)
         glPopMatrix()
 
         glPushMatrix()
@@ -451,7 +454,7 @@ class ArqAlta:
         #Base Vertical.
         glRotatef(90, 1.0, 0.0 , 0.0)
         glColor3f(0.5,0.5,0.5)
-        glutSolidCylinder(0.07, 10.0, 40, 10)
+        glutSolidCylinder(0.07, 15.0, 40, 10)
         glRotatef(5, 1.0, 0.0 , 0.0)
         #Base Luzes.
         glTranslate( -0.75, 0.0, -1.02)
@@ -509,7 +512,7 @@ class ArqAlta:
         glNewList(self.obj, GL_COMPILE)
         glPushMatrix()
         glScalef(.2,.2,.2)
-        glTranslate(-26,-4,-25)
+        glTranslate(-15,-4,-25)
         # Parte Baixa
 
         glPushMatrix()
@@ -694,8 +697,9 @@ class ArqAlta:
 
         # CORRIMÕES
         glPushMatrix()
+        glTranslate(0,0,20)
         contador = 0
-        while contador <= 25:
+        while contador <= 51:
             self.corrimao()
             glTranslate(0,0,-1.5)
             contador+=1
@@ -746,7 +750,7 @@ class ArqAlta:
 
         # REFLETOR DIREITO
         glPushMatrix()
-        glTranslate(-11,15,-20)
+        glTranslate(-11,20,-20)
         glRotatef(90, 0,1,0)
         glScalef(2,2,2)
         self.refletor()
@@ -754,7 +758,7 @@ class ArqAlta:
 
         # REFLETOR ESQUERDO
         glPushMatrix()
-        glTranslate(-11,15,20)
+        glTranslate(-11,20,20)
         glRotatef(90, 0,1,0)
         glScalef(2,2,2)
         self.refletor()
@@ -862,72 +866,187 @@ class ArqGrade:
             glTranslate(0.5,0,0)
         glPopMatrix()
 
+    def refletor(self):
+
+        #Base Vertical.
+        glRotatef(90, 1.0, 0.0 , 0.0)
+        glColor3f(0.5,0.5,0.5)
+        glutSolidCylinder(0.07, 10.0, 40, 10)
+        glRotatef(5, 1.0, 0.0 , 0.0)
+        #Base Luzes.
+        glTranslate( -0.75, 0.0, -1.02)
+
+        glColor3f(0.8, 0.8, 0.8) # cor RGB
+        #Luzes do meio.
+        contador = 0
+        glTranslate( -0.1, 0.1, 0.5)
+        while(contador < 6):
+            glTranslate( 0.25, 0.0, 0.0)
+            glutWireCube(0.18,100)
+            glutSolidCube(0.15)
+            contador += 1
+
+        #Luzes de cima.
+        contador = 0
+        glTranslate( -1.5, 0.0, 0.3)
+        while(contador < 6):
+            glTranslate( 0.25, 0.0, 0.0)#Nao altera. Definir espaco entre as lampadas.
+            glutWireCube(0.18,100)
+            glutSolidCube(0.15)
+            contador += 1
+
+        #Luzes de baixo.
+        contador = 0
+        glTranslate( -1.5, 0.0, -0.6)
+        while(contador < 6):
+            glTranslate( 0.25, 0.0, 0.0)#Nao altera.Definir espaco entre as lampadas.
+            glutWireCube(0.18,100)
+            glutSolidCube(0.15)
+            contador += 1
+
+
+        glTranslate( -0.65, -0.1, 0.3)
+        glPushMatrix()
+        glColor3f(1, 1, 1) # cor RGB
+        glScalef(3.5, 0.2, 2.0)
+        glutWireCube(0.52)
+        glPopMatrix()
+
+        #Fios que seguram as lampadas.
+        glPushMatrix()
+        glRotatef(90, 0.0, 1.0 , 0.0)
+        glTranslate( -0.3, 0.0, -0.92)
+        for s in range(3):
+            glutSolidCylinder(0.008, 1.83, 10, 1)
+            glTranslate( 0.3, 0, 0)
+        glPopMatrix()
+
     def corrimao(self):
         # CORRIMÃO
 
         glPushMatrix()
         glColor3f(0.3,0.3,0.3)
         glTranslate(-0.6,3.5,17)
-        glutSolidCylinder(0.02, 3.0, 40, 10)
+        glutSolidCylinder(0.01, 3.4, 40, 10)
         glPopMatrix()
 
         glPushMatrix()
         glColor3f(0.8,0.8,0.8)
         glTranslate(-0.6,3.4,17)
-        glutSolidCylinder(0.02, 3.0, 40, 10)
+        glutSolidCylinder(0.01, 3.4, 40, 10)
         glPopMatrix()
 
         glPushMatrix()
         glColor3f(0.8,0.8,0.8)
         glTranslate(-0.6,3.3,17)
-        glutSolidCylinder(0.02, 3.0, 40, 10)
+        glutSolidCylinder(0.01, 3.4, 40, 10)
         glPopMatrix()
 
         glPushMatrix()
         glColor3f(0.3,0.3,0.3)
         glRotate(90, 1.0, 0.0, 0.0)
         glTranslate(-0.6,18,-3.5)
-        glutSolidCylinder(0.02, 0.5, 40, 10)
+        glutSolidCylinder(0.01, 0.5, 40, 10)
         glPopMatrix()
+
+    def corrimaoCima(self):
+        # CORRIMÃO
+
+        glPushMatrix()
+        glColor3f(0.3,0.3,0.3)
+        glTranslate(-0.6,3.5,17)
+        glutSolidCylinder(0.02, 3.4, 40, 10)
+        glPopMatrix()
+
+        glPushMatrix()
+        glColor3f(0.8,0.8,0.8)
+        glTranslate(-0.6,3.4,17)
+        glutSolidCylinder(0.02, 3.4, 40, 10)
+        glPopMatrix()
+
+        glPushMatrix()
+        glColor3f(0.8,0.8,0.8)
+        glTranslate(-0.6,3.3,17)
+        glutSolidCylinder(0.02, 3.4, 40, 10)
+        glPopMatrix()
+
 
     def desenhar(self):
         self.obj = glGenLists(11)
         glNewList(self.obj, GL_COMPILE)
         glPushMatrix()
         glScale(.2,.2,.2)
-        glTranslate(50,-5,-70)
+        glTranslate(45,-5,-70)
 
         # PISO PASSAGEM
         glPushMatrix()
-        glTranslate(0,1,99.9)
+        glTranslate(0,1,82)
         glRotate(90,0,1,0)
+
         for i in range(1):
             glScale(1,1,2)
-            self.bancos(400)
-            glTranslate(0,1,1)
+
+            self.bancos(327)
+
         glPopMatrix()
 
         glPushMatrix()
         glTranslate(2,-15,-85)
         glScale(5,5,5)
-        for i in range(15):
+        for i in range(14):
             self.corrimao()
             glTranslate(0,0,1)
         glPopMatrix()
 
+        # CORRIMAO DE CIMA
+
         glPushMatrix()
-        glTranslate(0.4,1,100)
+        glTranslate(12.4,-7,-85)
+        glScale(5,5,5)
+        for i in range(14):
+            self.corrimaoCima()
+            glTranslate(0,0,1)
+        glPopMatrix()
+
+        glPushMatrix()
+        glTranslate(0.4,1,82)
         glRotate(90,0,1,0)
         for i in range(9):
             if i % 2 == 0:
                 glColor3f(0.2,0.2,0.2)
             else:
                 glColor3f(0.8,0.8,0.8)
-            self.bancos(400)
+            self.bancos(328)
             glTranslate(0,1,1)
         glPopMatrix()
 
-        for i in range(50):
+        # CORRIMAO LADO ESQ
+
+        glPushMatrix()
+        glTranslate(-43.2,-53.5,-2.2)
+        glScale(4,4,4)
+        glRotate(90, 0,1,0)
+        glRotate(-41, 1,0,0)
+        for i in range(1):
+            self.corrimaoCima()
+            glTranslate(0,0,1)
+        glPopMatrix()
+
+        # CORRIMAO LADO DIR
+
+        glPushMatrix()
+        glTranslate(-43.2,-53.5,79.7)
+        glScale(4,4,4)
+        glRotate(90, 0,1,0)
+        glRotate(-41, 1,0,0)
+        for i in range(1):
+            self.corrimaoCima()
+            glTranslate(0,0,1)
+        glPopMatrix()
+
+
+
+        for i in range(42):
             glPushMatrix()
             self.grade(10)
             glRotate(-180,0,1,0)
@@ -937,7 +1056,25 @@ class ArqGrade:
             glPopMatrix()
             glTranslate(0,0,2)
         glPopMatrix()
+
+        # REFLETOR DIREITO
+        glPushMatrix()
+        glTranslate(12.5,3,-10)
+        glRotatef(-90, 0,1,0)
+        glScalef(0.5,0.5,0.5)
+        self.refletor()
+        glPopMatrix()
+
+        # REFLETOR ESQUERDO
+        glPushMatrix()
+        glTranslate(12.5,3,0)
+        glRotatef(-90, 0,1,0)
+        glScalef(0.5,0.5,0.5)
+        self.refletor()
+        glPopMatrix()
+
         glEndList()
+
 
     def executar(self):
         glCallList(self.obj)
@@ -999,7 +1136,7 @@ class ArqFrente:
         glTranslate(-10,0,-7)
         while contador < 13:
             glPushMatrix()
-            glScalef(0.5,0.05,0.5)
+            glScalef(0.5,0.1,0.5)
             self.degrau(100)
             glPopMatrix()
             glTranslate(0.8,0,0.5)
@@ -1095,8 +1232,8 @@ class ArqFrente:
         self.obj = glGenLists(1)
         glNewList(self.obj, GL_COMPILE)
         glPushMatrix()
-        glTranslate(6.5,.1,-17.2)
-        glScalef(.5,.7,.5)
+        glTranslate(6,.1,-16.3)
+        glScalef(0.45,.7,.5)
         glRotatef(-90,0,1,0)
         glPushMatrix()
         self.arquibancada()
@@ -1185,7 +1322,7 @@ class ArqTras:
         glNewList(self.obj, GL_COMPILE)
         #Apenas para testar com zoom.
         glPushMatrix()
-        glTranslate(3.5,.4,8)
+        glTranslate(3.5,.4,6)
         glScalef(.2,.2,.2)
         glRotatef(90,0,1,0)
 

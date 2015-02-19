@@ -21,7 +21,7 @@ class Main:
         glutInit(argv)
         glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH)
         glutInitWindowSize(800, 800)
-        glutCreateWindow("Movimento Câmera")
+        glutCreateWindow("Estadio Coaracy da Mata Fonseca")
         self.iluminacao_da_cena()
         for i in range(7):
             self.objetos[i].desenhar()
