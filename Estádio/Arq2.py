@@ -114,7 +114,7 @@ def arquibancada():
     #Escadinha aux.    
     glPushMatrix()
     glColor3f(1,1,0)
-    glTranslate(0,50,0)
+    glTranslate(-0.5,50,0.1)
     escadinha()
     glTranslate(0,-100,0)
     escadinha()

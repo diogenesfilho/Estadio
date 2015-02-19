@@ -767,7 +767,7 @@ class ArqAlta:
         glPopMatrix()
         glEndList()
 
-
+#------------------------------------------------------------------------------
 class Bola:
 
     def __init__(self):
@@ -1089,7 +1089,7 @@ class ArqFrente:
 
         glBegin(GL_POLYGON)
         glColor3f(1,1,1)
-
+        
         glVertex3f(0.0, 0.0, 0.0)
         glVertex3f(14.0, 0.0, 0.0)
         glVertex3f(14.0, 1.0, 0.0)
@@ -1124,6 +1124,7 @@ class ArqFrente:
         glEnd()
 
         glPopMatrix()
+
     def degrau(self,tamanho):
         glPushMatrix()
         glScalef(2, tamanho, 1.0)
@@ -1136,7 +1137,7 @@ class ArqFrente:
         glTranslate(-10,0,-7)
         while contador < 13:
             glPushMatrix()
-            glScalef(0.5,0.1,0.5)
+            glScalef(0.5,0.05,0.5)
             self.degrau(100)
             glPopMatrix()
             glTranslate(0.8,0,0.5)
@@ -1163,15 +1164,15 @@ class ArqFrente:
                 self.degrau(300)
                 glTranslate(0.8,0,0.5)
             else:
-                glColor3f(0,0,0)
+                glColor3f(0.1,0.1,0.1)
                 self.degrau(300)
                 glTranslate(0.8,0,0.5)
             contador+=1
 
-        #Escadinha aux.
+        #Escadinha aux.    
         glPushMatrix()
         glColor3f(1,1,0)
-        glTranslate(0,50,0)
+        glTranslate(-0.5,50,0.1)
         self.escadinha()
         glTranslate(0,-100,0)
         self.escadinha()
@@ -1215,7 +1216,7 @@ class ArqFrente:
                 self.degrau(125)
                 glTranslate(0.8,0,0.5)
             else:
-                glColor3f(0,0,0.)
+                glColor3f(0.1,0.1,0.1)
                 self.degrau(125)
                 glTranslate(0.8,0,0.5)
             contador+=1
@@ -1228,13 +1229,7 @@ class ArqFrente:
         self.degrau(150)
         glPopMatrix()
 
-    def desenhar(self):
-        self.obj = glGenLists(1)
-        glNewList(self.obj, GL_COMPILE)
-        glPushMatrix()
-        glTranslate(6,.1,-16.3)
-        glScalef(0.45,.7,.5)
-        glRotatef(-90,0,1,0)
+    def desenho(self):
         glPushMatrix()
         self.arquibancada()
         glPopMatrix()
@@ -1245,6 +1240,19 @@ class ArqFrente:
         glPopMatrix()
         glTranslate(0,0,7)
         self.arquibancada2()
+
+
+    def desenhar(self):
+        self.obj = glGenLists(1)
+        glNewList(self.obj, GL_COMPILE)
+        glPushMatrix()
+        glTranslate(6,.1,-16.3)
+        glScalef(0.45,.7,.5)
+        glRotatef(-90,0,1,0)
+
+
+        self.desenho()
+
         glPopMatrix()
         glEndList()
 
@@ -1262,7 +1270,7 @@ class ArqTras:
 
         glBegin(GL_POLYGON)
         glColor3f(1,1,1)
-
+        
         glVertex3f(0.0, 0.0, 0.0)
         glVertex3f(14.0, 0.0, 0.0)
         glVertex3f(14.0, 1.0, 0.0)
@@ -1317,14 +1325,12 @@ class ArqTras:
             contador+=1
         glPopMatrix()
 
-    def desenhar(self):
-        self.obj = glGenLists(9)
-        glNewList(self.obj, GL_COMPILE)
+
+
+    def arquibancada(self):
         #Apenas para testar com zoom.
-        glPushMatrix()
-        glTranslate(3.5,.4,6)
-        glScalef(.2,.2,.2)
-        glRotatef(90,0,1,0)
+        glScalef(0.3,0.3,0.3)
+
 
         # Parte Alta Esquerda
         glPushMatrix()
@@ -1339,15 +1345,15 @@ class ArqTras:
                 self.degrau()
                 glTranslate(0.8,0,0.5)
             else:
-                glColor3f(0,0,0)
+                glColor3f(0.1,0.1,0.1)
                 self.degrau()
                 glTranslate(0.8,0,0.5)
             contador+=1
 
-        #Escadinha aux.
+        #Escadinha aux.    
         glPushMatrix()
         glColor3f(1,1,0)
-        glTranslate(0,50,0)
+        glTranslate(-0.5,50,0.1)
         self.escadinha()
         glTranslate(0,-100,0)
         self.escadinha()
@@ -1371,12 +1377,26 @@ class ArqTras:
         glTranslate(0.0,0.0,-49.6)
         self.cobertura()
         glPopMatrix()
+
+    def desenhar(self):
+        self.obj = glGenLists(9)
+        glNewList(self.obj, GL_COMPILE)
+        
+        glPushMatrix()
+        glTranslate(3.5,.4,6)
+        glScalef(.2,.2,.2)
+        glRotatef(90,0,1,0)
+
+        self.arquibancada()
+        
         glPopMatrix()
         glEndList()
 
     def executar(self):
         glCallList(self.obj)
 
+
+#----------------------------------------------------------------
 class Grade:
     def __init__(self):
         self.obj = GLuint()
