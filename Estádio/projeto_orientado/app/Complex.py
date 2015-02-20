@@ -35,7 +35,8 @@ class Placar:
         self.obj = glGenLists(3)
         glNewList(self.obj,GL_COMPILE)
         glPushMatrix()
-        glTranslatef(12, -.15, 7)
+
+        glTranslatef(10, -.15, 5)
         glScale(.05,.05,.05)
         glRotate(35, 0, 1, 0)
         #Coluna Esq
@@ -1383,8 +1384,8 @@ class ArqTras:
         glNewList(self.obj, GL_COMPILE)
         
         glPushMatrix()
-        glTranslate(3.5,.4,6)
-        glScalef(.2,.2,.2)
+        glTranslate(3.5,.4,5)
+        glScalef(0.7,.9,.5)
         glRotatef(90,0,1,0)
 
         self.arquibancada()
