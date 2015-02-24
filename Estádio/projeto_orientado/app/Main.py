@@ -3,6 +3,7 @@ __author__ = 'pedro'
 from Camera import *
 from Objeto import *
 from Complex import *
+import pygame
 import pickle
 from sys import argv
 
@@ -94,6 +95,7 @@ class Main:
         glutSwapBuffers()
 
 if __name__ == "__main__":
+    pygame.init()
     objetos = [ArqAlta(), Grade(), Placar(), Campo(), ArqGrade(), ArqFrente(),
                ArqTras()]
     Main(objetos)

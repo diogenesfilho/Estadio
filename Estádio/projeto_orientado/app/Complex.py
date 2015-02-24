@@ -1,9 +1,12 @@
-# -*- coding: utf-8 -*- 
+# -*- coding: utf-8 -*-
+from gi.overrides.keysyms import musicalflat
+
 __author__ = 'pedro'
 from OpenGL.GL import *
 from OpenGL.GLU import *
 from OpenGL.GLUT import *
-from PIL import Image, ImageFilter
+from PIL import Image
+from pygame.mixer import music
 
 class Placar:
 
@@ -772,6 +775,7 @@ class ArqAlta:
 class Bola:
 
     def __init__(self):
+        music.load("../objs/torcida.mp3")
         self.obj = GLuint()
         glEnable(GL_DEPTH_TEST)
         glEnable(GL_NORMALIZE)
@@ -841,6 +845,9 @@ class Bola:
             self.esqdir += + 20
             self.axisX += .1
 
+        if self.axisZ <= -12.5:
+            music.play(0)
+
         glutPostRedisplay()
 
 class ArqGrade:
@@ -853,7 +860,7 @@ class ArqGrade:
         glPushMatrix()
         glColor(0,0,0)
         for i in range(qtd):
-            glutSolidCylinder(0.08,(i+1),10,10)
+            glutSolidCylinder(0.08, (i+1), 10, 10)
             glTranslate(1,0,0)
         glPopMatrix()
         glRotate(90,1,0,0)
