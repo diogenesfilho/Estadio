@@ -1172,7 +1172,7 @@ class ArqFrente:
                 self.degrau(300)
                 glTranslate(0.8,0,0.5)
             else:
-                glColor3f(0.1,0.1,0.1)
+                glColor3f(0.0,0.0,0.0)
                 self.degrau(300)
                 glTranslate(0.8,0,0.5)
             contador+=1
@@ -1224,7 +1224,7 @@ class ArqFrente:
                 self.degrau(125)
                 glTranslate(0.8,0,0.5)
             else:
-                glColor3f(0.1,0.1,0.1)
+                glColor3f(0.0,0.0,0.0)
                 self.degrau(125)
                 glTranslate(0.8,0,0.5)
             contador+=1
@@ -1353,7 +1353,7 @@ class ArqTras:
                 self.degrau()
                 glTranslate(0.8,0,0.5)
             else:
-                glColor3f(0.1,0.1,0.1)
+                glColor3f(0.0,0.0,0.0)
                 self.degrau()
                 glTranslate(0.8,0,0.5)
             contador+=1
@@ -1362,9 +1362,26 @@ class ArqTras:
         glPushMatrix()
         glColor3f(1,1,0)
         glTranslate(-0.5,50,0.1)
+
+        glPushMatrix()
+        glScalef(1,.3,1)
         self.escadinha()
-        glTranslate(0,-100,0)
+        glPopMatrix()
+
+        glTranslate(0,-50,0)
+
+        glPushMatrix()
+        glScalef(1,.3,1)
         self.escadinha()
+        glPopMatrix()
+
+        glTranslate(0,-50,0)
+
+        glPushMatrix()
+        glScalef(1,.3,1)
+        self.escadinha()
+        glPopMatrix()
+
         glPopMatrix()
 
         #Costa.
@@ -1391,8 +1408,8 @@ class ArqTras:
         glNewList(self.obj, GL_COMPILE)
         
         glPushMatrix()
-        glTranslate(3.5,.4,5)
-        glScalef(0.7,.9,.5)
+        glTranslate(3,.2,5.5)
+        glScalef(0.65,.5,.5)
         glRotatef(90,0,1,0)
 
         self.arquibancada()
