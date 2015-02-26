@@ -775,7 +775,7 @@ class ArqAlta:
 class Bola:
 
     def __init__(self):
-        music.load("../objs/torcida.mp3")
+        music.load("../objs/torcidaASA.mp3")
         self.obj = GLuint()
         glEnable(GL_DEPTH_TEST)
         glEnable(GL_NORMALIZE)
