@@ -12,15 +12,7 @@ class Ceu:
 
     def __init__(self):
         self.obj = GLuint()
-        glEnable(GL_DEPTH_TEST)
-        glEnable(GL_NORMALIZE)
-        glEnable(GL_COLOR_MATERIAL)
         self.quad = gluNewQuadric()
-        self.textura1 = ''
-        self.axisX = 3.5
-        self.axisZ = -5
-        self.esqdir = 0
-        self.cimabaixo = 0
         self.texturaID = GLuint()
         self._textureID = self.carrega_textura("../objs/ceu.jpg")
 
@@ -39,20 +31,23 @@ class Ceu:
         return self.texturaID
 
     def desenhar(self):
-
+        self.obj = glGenLists(31)
+        glNewList(self.obj,GL_COMPILE)
         self._textureID = self.carrega_textura("../objs/ceu.jpg")
         glEnable(GL_TEXTURE_2D)
+        glEnable(GL_DEPTH_TEST)
+        glEnable(GL_NORMALIZE)
+        glEnable(GL_COLOR_MATERIAL)
         #glBindTexture(GL_TEXTURE_2D, self._textureID)
         glPolygonMode(GL_FRONT_AND_BACK, GL_FILL)
         glFrontFace(GL_CW)
         #glMaterial(GL_FRONT_AND_BACK)
+        glRotatef(-45,1,1,1)
         glPushMatrix()
-        glTranslatef(self.axisX, -.95, self.axisZ)
-         
         glPushMatrix()
         gluQuadricTexture(self.quad, 1)
         glDisable(GL_CULL_FACE)
-        gluSphere(self.quad, 50, 20, 20)
+        gluSphere(self.quad, 30, 50, 50)
         glEnable(GL_DEPTH_TEST)
         glDisable(GL_TEXTURE_2D)
         glFrontFace(GL_CCW)
@@ -60,9 +55,10 @@ class Ceu:
         glPopMatrix()
         
         glutSwapBuffers()
+        glEndList()
 
     def executar(self):
-        self.desenhar()
+        glCallList(self.obj)
 
 class Placar:
 

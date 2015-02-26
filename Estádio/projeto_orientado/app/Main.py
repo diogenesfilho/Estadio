@@ -45,14 +45,14 @@ class Main:
         glMatrixMode(GL_MODELVIEW)
 
     def iluminacao_da_cena(self):
-        luzAmbiente = [.2, .2, .2, 1]
+        luzAmbiente = [.7, .7, .7, .5]
         luzDifusa = [.7, .7, .7, 1]
         luzEspecular = [.1, .1, .1, 1]
         posicaoLuz = [0, 50.0, 50.0, 1.0]
         especularidade = [.2, .2, .2, .2]
         especMaterial = 1
 
-        glClearColor(1.0, 1.0, 1.0, 1.0)
+        glClearColor(0, 0, 0, 0)
         glShadeModel(GL_SMOOTH)
         glMaterialfv(GL_FRONT, GL_SPECULAR, especularidade)
         glMateriali(GL_FRONT, GL_SHININESS, especMaterial)
@@ -63,13 +63,13 @@ class Main:
         glLightfv(GL_LIGHT0, GL_POSITION, posicaoLuz)
         glEnable(GL_COLOR_MATERIAL)
         glEnable(GL_LIGHTING)
-        glEnable(GL_LIGHT0)
+       	glEnable(GL_LIGHT0)
         glEnable(GL_DEPTH_TEST)
 
     def tela(self):
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
         glEnable(GL_DEPTH_TEST)
-        glClearColor(.4, .4, .4, .2)
+        glClearColor(.0, .0, .0, .0)
         glMatrixMode(GL_PROJECTION)
         glLoadIdentity()
         gluPerspective(self.camera.distancia, 1, 0.1, 500)
@@ -84,7 +84,7 @@ class Main:
         glPopMatrix()
         glPushMatrix()
         glTranslatef(0,-1.2,0)
-        glColor3f(0.9, 0.9, 0.9)
+        glColor3f(0.2, 0.2, 0.2)
         glBegin(GL_QUADS)
         glVertex3f(-100.0, 0.0, -100.0)
         glVertex3f(-100.0, 0.0,  100.0)
