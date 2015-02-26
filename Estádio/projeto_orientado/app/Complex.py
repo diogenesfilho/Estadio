@@ -1142,7 +1142,7 @@ class ArqFrente:
     def escadinha(self):
         contador = 0
         glPushMatrix()
-        glTranslate(-10,0,-7)
+        glTranslate(-10,0,-6.95)
         while contador < 13:
             glPushMatrix()
             glScalef(0.5,0.05,0.5)
@@ -1198,10 +1198,10 @@ class ArqFrente:
 
         #Cobertura lateral.
         glPushMatrix()
-        glTranslate(-0.5,-8.1,24.8) # nao altera, sobe e desce, frente e tras.
-        glScalef(0.8, 0.6,1)
+        glTranslate(-0.6,-8.05,24.4) # nao altera, sobe e desce, frente e tras.
+        glScalef(0.75, 0.6,0.9)
         self.cobertura()
-        glTranslate(0.0,0.0,-49.6)
+        glTranslate(0.0,0.0,-54.6)
         self.cobertura()
         glPopMatrix()
 
@@ -1323,7 +1323,7 @@ class ArqTras:
     def escadinha(self):
         contador = 0
         glPushMatrix()
-        glTranslate(-10,0,-7)
+        glTranslate(-10,0,-6.95)
         while contador < 13:
             glPushMatrix()
             glScalef(0.5,0.05,0.5)
