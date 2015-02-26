@@ -20,11 +20,12 @@ class Main:
         self.camera = Camera()
         self.camera.obstaculos = self.objetos
         glutInit(argv)
+        
         glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH)
         glutInitWindowSize(800, 800)
         glutCreateWindow("Estadio Coaracy da Mata Fonseca")
         self.iluminacao_da_cena()
-        for i in range(7):
+        for i in range(8):
             self.objetos[i].desenhar()
         glutDisplayFunc(self.tela)
         glutKeyboardFunc(self.bola.teclado)
@@ -97,5 +98,5 @@ class Main:
 if __name__ == "__main__":
     pygame.init()
     objetos = [ArqAlta(), Grade(), Placar(), Campo(), ArqGrade(), ArqFrente(),
-               ArqTras()]
+               ArqTras(), Ceu()]
     Main(objetos)

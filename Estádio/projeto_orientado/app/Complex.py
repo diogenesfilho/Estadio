@@ -8,6 +8,62 @@ from OpenGL.GLUT import *
 from PIL import Image
 from pygame.mixer import music
 
+class Ceu:
+
+    def __init__(self):
+        self.obj = GLuint()
+        glEnable(GL_DEPTH_TEST)
+        glEnable(GL_NORMALIZE)
+        glEnable(GL_COLOR_MATERIAL)
+        self.quad = gluNewQuadric()
+        self.textura1 = ''
+        self.axisX = 3.5
+        self.axisZ = -5
+        self.esqdir = 0
+        self.cimabaixo = 0
+        self.texturaID = GLuint()
+        self._textureID = self.carrega_textura("../objs/ceu.jpg")
+
+    def carrega_textura(self, caminho):
+
+        im = Image.open(caminho, "r")
+        try:
+            ix, iy, image = im.size[0], im.size[1], im.tostring("raw", "RGBA", 0, -1)
+        except SystemError:
+            ix, iy, image = im.size[0], im.size[1], im.tostring("raw", "RGBX", 0, -1)
+        self.textura1 = glGenTextures(1, self.texturaID)
+        glBindTexture(GL_TEXTURE_2D, self.texturaID)
+
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, ix, iy, 0, GL_RGBA, GL_UNSIGNED_BYTE, image)
+
+        return self.texturaID
+
+    def desenhar(self):
+
+        self._textureID = self.carrega_textura("../objs/ceu.jpg")
+        glEnable(GL_TEXTURE_2D)
+        #glBindTexture(GL_TEXTURE_2D, self._textureID)
+        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL)
+        glFrontFace(GL_CW)
+        #glMaterial(GL_FRONT_AND_BACK)
+        glPushMatrix()
+        glTranslatef(self.axisX, -.95, self.axisZ)
+         
+        glPushMatrix()
+        gluQuadricTexture(self.quad, 1)
+        glDisable(GL_CULL_FACE)
+        gluSphere(self.quad, 50, 20, 20)
+        glEnable(GL_DEPTH_TEST)
+        glDisable(GL_TEXTURE_2D)
+        glFrontFace(GL_CCW)
+        glPopMatrix()
+        glPopMatrix()
+        
+        glutSwapBuffers()
+
+    def executar(self):
+        self.desenhar()
+
 class Placar:
 
     def __init__(self):
