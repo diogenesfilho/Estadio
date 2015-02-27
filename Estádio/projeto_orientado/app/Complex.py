@@ -46,7 +46,7 @@ class Ceu:
         glPushMatrix()
         gluQuadricTexture(self.quad, 1)
         glDisable(GL_CULL_FACE)
-        glRotate(self.rotate,1,1,1)
+        glRotate(self.rotate,0,1,0)
         gluSphere(self.quad, 50, 50, 50)
         glEnable(GL_DEPTH_TEST)
         glDisable(GL_TEXTURE_2D)
@@ -58,7 +58,7 @@ class Ceu:
 
     def executar(self):
         self.desenhar()
-        self.rotate += .1
+        self.rotate += .15
         glutPostRedisplay()
 
 class Placar:

@@ -24,7 +24,7 @@ class Main:
         glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH)
         glutInitWindowSize(1000, 800)
         glutCreateWindow("Estadio Coaracy da Mata Fonseca")
-        #self.iluminacao_da_cena()
+        self.iluminacao_da_cena()
         for i in self.objetos:
             i.desenhar()
         glutDisplayFunc(self.tela)
@@ -45,9 +45,9 @@ class Main:
         glMatrixMode(GL_MODELVIEW)
 
     def iluminacao_da_cena(self):
-        luzAmbiente = [.7, .7, .7, .5]
+        luzAmbiente = [.5, .5, .5, .9]
         luzDifusa = [.7, .7, .7, 1]
-        luzEspecular = [.1, .1, .1, 1]
+        luzEspecular = [.5, .5, .5, .3]
         posicaoLuz = [0, 50.0, 50.0, 1.0]
         especularidade = [.2, .2, .2, .2]
         especMaterial = 1
@@ -63,7 +63,7 @@ class Main:
         glLightfv(GL_LIGHT0, GL_POSITION, posicaoLuz)
         glEnable(GL_COLOR_MATERIAL)
         glEnable(GL_LIGHTING)
-       	glEnable(GL_LIGHT0)
+        glEnable(GL_LIGHT0)
         glEnable(GL_DEPTH_TEST)
 
     def tela(self):
