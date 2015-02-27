@@ -22,11 +22,11 @@ class Main:
         glutInit(argv)
         
         glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH)
-        glutInitWindowSize(800, 800)
+        glutInitWindowSize(1000, 800)
         glutCreateWindow("Estadio Coaracy da Mata Fonseca")
-        self.iluminacao_da_cena()
-        for i in range(8):
-            self.objetos[i].desenhar()
+        #self.iluminacao_da_cena()
+        for i in self.objetos:
+            i.desenhar()
         glutDisplayFunc(self.tela)
         glutKeyboardFunc(self.bola.teclado)
         glutMouseFunc(self.camera.scroll)
@@ -69,7 +69,7 @@ class Main:
     def tela(self):
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
         glEnable(GL_DEPTH_TEST)
-        glClearColor(.0, .0, .0, .0)
+        glClearColor(1, 1, 1, 0)
         glMatrixMode(GL_PROJECTION)
         glLoadIdentity()
         gluPerspective(self.camera.distancia, 1, 0.1, 500)
@@ -82,21 +82,12 @@ class Main:
         for i in self.objetos:
             i.executar()
         glPopMatrix()
-        glPushMatrix()
-        glTranslatef(0,-1.2,0)
-        glColor3f(0.2, 0.2, 0.2)
-        glBegin(GL_QUADS)
-        glVertex3f(-100.0, 0.0, -100.0)
-        glVertex3f(-100.0, 0.0,  100.0)
-        glVertex3f(100.0, 0.0,  100.0)
-        glVertex3f(100.0, 0.0, -100.0)
-        glEnd()
-        glPopMatrix()
+
         self.bola.desenhar()
         glutSwapBuffers()
 
 if __name__ == "__main__":
     pygame.init()
-    objetos = [ArqAlta(), Grade(), Placar(), Campo(), ArqGrade(), ArqFrente(),
-               ArqTras(), Ceu()]
+    objetos = [Terreno(), ArqAlta(), Grade(), Placar(), Campo(), ArqGrade(),
+               ArqFrente(), ArqTras(), Ceu()]
     Main(objetos)

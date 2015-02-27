@@ -15,7 +15,7 @@ class Ceu:
         self.quad = gluNewQuadric()
         self.texturaID = GLuint()
         self._textureID = self.carrega_textura("../objs/ceu.jpg")
-
+        self.rotate = 0
     def carrega_textura(self, caminho):
 
         im = Image.open(caminho, "r")
@@ -31,8 +31,7 @@ class Ceu:
         return self.texturaID
 
     def desenhar(self):
-        self.obj = glGenLists(31)
-        glNewList(self.obj,GL_COMPILE)
+
         self._textureID = self.carrega_textura("../objs/ceu.jpg")
         glEnable(GL_TEXTURE_2D)
         glEnable(GL_DEPTH_TEST)
@@ -47,7 +46,8 @@ class Ceu:
         glPushMatrix()
         gluQuadricTexture(self.quad, 1)
         glDisable(GL_CULL_FACE)
-        gluSphere(self.quad, 30, 50, 50)
+        glRotate(self.rotate,1,1,1)
+        gluSphere(self.quad, 50, 50, 50)
         glEnable(GL_DEPTH_TEST)
         glDisable(GL_TEXTURE_2D)
         glFrontFace(GL_CCW)
@@ -55,10 +55,11 @@ class Ceu:
         glPopMatrix()
         
         glutSwapBuffers()
-        glEndList()
 
     def executar(self):
-        glCallList(self.obj)
+        self.desenhar()
+        self.rotate += .1
+        glutPostRedisplay()
 
 class Placar:
 
@@ -824,6 +825,61 @@ class ArqAlta:
         glEndList()
 
 #------------------------------------------------------------------------------
+
+class Terreno:
+    def __init__(self):
+        self.textura1 = glGenTextures(1)
+        self.obj = GLuint()
+
+    def carrega_imagem(self):
+        im = Image.open("../objs/terreno.jpg", "r")
+        try:
+            ix, iy, image = im.size[0], im.size[1], im.tostring("raw", "RGBA", 0, -1)
+        except SystemError:
+            ix, iy, image = im.size[0], im.size[1], im.tostring("raw", "RGBX", 0, -1)
+
+
+        #glBindTexture(GL_TEXTURE_2D, textura1)
+        glPixelStorei(GL_UNPACK_ALIGNMENT, 1)
+
+        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR)
+        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR)
+
+
+        glTexImage2D(
+          GL_TEXTURE_2D, 0, 3, ix, iy, 0,
+          GL_RGBA, GL_UNSIGNED_BYTE, image
+          )
+
+    def desenhar(self):
+        self.obj = glGenLists(97)
+        glNewList(self.obj, GL_COMPILE)
+
+        self.carrega_imagem()
+        glEnable(GL_TEXTURE_2D)
+        glPushMatrix()
+        glTranslatef(0,-1.1,0)
+        glBegin(GL_QUADS)
+        glColor3f(1,1,1)
+
+        glVertex3f(-100.0, 0.0, -100.0)
+        glTexCoord2f(0.0, 150)
+        glVertex3f(-100.0, 0.0,  100.0)
+        glTexCoord2f(150, 150)
+        glVertex3f(100.0, 0.0,  100.0)
+        glTexCoord2f(150, 0.0)
+        glVertex3f(100.0, 0.0, -100.0)
+        glTexCoord2f(0.0, 0.0)
+        glEnd()
+        glPopMatrix()
+
+        glDisable(GL_TEXTURE_2D)
+
+        glEndList()
+
+    def executar(self):
+        glCallList(self.obj)
+
 class Bola:
 
     def __init__(self):
@@ -940,9 +996,17 @@ class ArqGrade:
         #Luzes do meio.
         contador = 0
         glTranslate( -0.1, 0.1, 0.5)
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
         while(contador < 6):
             glTranslate( 0.25, 0.0, 0.0)
             glutWireCube(0.18,100)
+            glPushMatrix()
+            glRotate(-45,1,0,0)
+            glEnable(GL_BLEND)
+            glColor4f(.9,.9, .9, .2)
+            glutSolidCone(0.15,.5,20,20)
+            glDisable(GL_BLEND)
+            glPopMatrix()
             glutSolidCube(0.15)
             contador += 1
 
