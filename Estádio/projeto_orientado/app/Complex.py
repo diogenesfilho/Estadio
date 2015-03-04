@@ -6,6 +6,121 @@ from OpenGL.GLUT import *
 from PIL import Image
 from pygame.mixer import music
 
+class BancoReserva:
+
+    def __init__(self):
+        self.textura1 = glGenTextures(1)
+        self.obj = GLuint()
+
+    def carrega_imagem(self):
+        im = Image.open("../objs/logo.png", "r")
+        try:
+            ix, iy, image = im.size[0], im.size[1], im.tostring("raw", "RGBA", 0, -1)
+        except SystemError:
+            ix, iy, image = im.size[0], im.size[1], im.tostring("raw", "RGBX", 0, -1)
+
+
+        #glBindTexture(GL_TEXTURE_2D, textura1)
+        glPixelStorei(GL_UNPACK_ALIGNMENT, 1)
+
+        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR)
+        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR)
+
+
+        glTexImage2D(
+          GL_TEXTURE_2D, 0, 3, ix, iy, 0,
+          GL_RGBA, GL_UNSIGNED_BYTE, image
+          )
+
+    def desenhar(self):
+        self.obj = glGenLists(43)
+
+        glNewList(self.obj,GL_COMPILE)
+        glPushMatrix()
+
+        glTranslate(0,0,-15)
+
+        glPushMatrix()
+
+        for s in range(3):
+
+            glTranslate(0.0, 0.0, 5)
+            self.banco()
+        glPopMatrix()
+        glPopMatrix()
+        glEndList()
+
+    def banco(self):
+        
+        glPushMatrix()
+        glTranslate(-1.8,-0.85,0)
+        glRotate(-90, 0,1,0)
+
+        glScalef(.05,.05,.05)
+        glPushMatrix()
+
+        #base
+        glPushMatrix()
+        glColor3f(1,1,1)
+        glScalef(16,0.2,4)
+        glTranslate(0,-17,-0.5)
+        glutSolidCube(1)
+        glPopMatrix()
+
+        #costas
+        glPushMatrix()
+        glColor3f(0,0,0)
+        glScalef(15,7,1)
+        glTranslate(0,0,0)
+        glutSolidCube(1)
+        glPopMatrix()
+
+        #cima
+        glPushMatrix()
+        glColor3f(0,0,0)
+        glScalef(15,0.2,4)
+        glTranslate(0,17,-0.6)
+        glutSolidCube(1)
+        glPopMatrix()
+
+        #bancos
+        glPushMatrix()
+        glColor3f(0.9,0.9,0.9)
+        glScalef(13,2,1.5)
+        glTranslate(0,-1.2,-0.6)
+        glutSolidCube(1)
+        glPopMatrix()
+
+        #Textura
+        self.carrega_imagem()
+
+        glEnable(GL_TEXTURE_2D)
+        glRotate(90, 0,1,0)
+        glRotate(90, 0,0,1)
+        glTranslate(1.55,-2,0)
+        glScale(2,2.2,2)
+        glBegin(GL_QUADS)
+        glColor3f(1,1,1)
+        glTexCoord2f(1.0, 0.0) 
+        glVertex3f( 1.0, -1.0, -1.0)
+
+        glTexCoord2f(1.0, 1.0) 
+        glVertex3f( 1.0,  1.0, -1.0)
+
+        glTexCoord2f(0.0, 1.0) 
+        glVertex3f( 1.0,  1.0,  1.0)
+
+        glTexCoord2f(0.0, 0.0) 
+        glVertex3f( 1.0, -1.0,  1.0)
+        glEnd()
+        glDisable(GL_TEXTURE_2D)
+        glPopMatrix()
+        glPopMatrix()
+        
+
+    def executar(self):
+        glCallList(self.obj)
+
 class Ceu:
 
     def __init__(self):

@@ -87,6 +87,6 @@ class Main:
 
 if __name__ == "__main__":
     pygame.init()
-    objetos = [Terreno(), ArqAlta(), Grade(), Placar(), Campo(), ArqGrade(),
+    objetos = [Terreno(), ArqAlta(), Grade(), Placar(), Campo(), ArqGrade(),BancoReserva(),
                ArqFrente(), ArqTras(), Ceu()]
     Main(objetos)
