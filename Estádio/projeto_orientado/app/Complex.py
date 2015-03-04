@@ -56,7 +56,7 @@ class Ceu:
 
     def executar(self):
         self.desenhar()
-        #self.rotate += .15
+        self.rotate += .15
         glutPostRedisplay()
 
 class Placar:
@@ -1127,11 +1127,13 @@ class ArqGrade:
         glRotate(90,0,1,0)
         for i in range(9):
             if i % 2 == 0:
-                glColor3f(0.2,0.2,0.2)
+                glColor3f(0,0,0)
+                self.bancos(328)
+                glTranslate(0,1,1)
             else:
-                glColor3f(0.8,0.8,0.8)
-            self.bancos(328)
-            glTranslate(0,1,1)
+                glColor3f(1,1,1)
+                self.bancos(328)
+                glTranslate(0,1,1)
         glPopMatrix()
 
         # CORRIMAO LADO ESQ
