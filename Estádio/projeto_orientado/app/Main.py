@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*- 
-__author__ = 'pedro'
 from Camera import *
 from Objeto import *
 from Complex import *
@@ -89,5 +88,5 @@ class Main:
 if __name__ == "__main__":
     pygame.init()
     objetos = [Terreno(), ArqAlta(), Grade(), Placar(), Campo(), ArqGrade(),
-               ArqFrente(), ArqTras(), Ceu()]
+               ArqFrente(), ArqTras(), Ceu(), BancoReserva()]
     Main(objetos)

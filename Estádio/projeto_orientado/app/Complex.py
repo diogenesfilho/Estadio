@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 from gi.overrides.keysyms import musicalflat
-
-__author__ = 'pedro'
 from OpenGL.GL import *
 from OpenGL.GLU import *
 from OpenGL.GLUT import *
@@ -58,7 +56,7 @@ class Ceu:
 
     def executar(self):
         self.desenhar()
-        self.rotate += .15
+        #self.rotate += .15
         glutPostRedisplay()
 
 class Placar:
@@ -391,15 +389,6 @@ class ArqAlta:
         glRotate(90, 1.0, 0.0, 0.0)
         glTranslate(-6.4,3.6,-7.5)
         glutSolidCylinder(0.05, 6.0, 40, 10)
-        glPopMatrix()
-
-        # Haste
-        glPushMatrix()
-        glColor3f(0.3,0.3,0.3)
-        glRotate(90, 1.0, 0.0, 0.0)
-        glRotate(-60, 0.0, 1.0, 0.0)
-        glTranslate(-9,3.6,1)
-        glutSolidCylinder(0.03, 1.0, 40, 10)
         glPopMatrix()
 
     def janela(self):
@@ -765,7 +754,7 @@ class ArqAlta:
         # MURO DIR
         glPushMatrix()
         contador = 0
-        while contador <= 21:
+        while contador <= 20:
             self.muroDireito()
             glTranslate(0,0,-1.5)
             contador+=1
@@ -782,7 +771,7 @@ class ArqAlta:
         # MURO ESQ
         glPushMatrix()
         contador = 0
-        while contador <= 21:
+        while contador <= 20:
             self.muroEsquerdo()
             glTranslate(0,0,1.5)
             contador+=1
@@ -945,7 +934,7 @@ class Bola:
             self.cimabaixo += - 20
             self.axisZ += .1
 
-        if tecla == b'w' and self.axisZ >= -12.6:
+        if tecla == b'w' and self.axisZ >= -12.8:
             self.cimabaixo += + 20
             self.axisZ -= .1
 
@@ -953,8 +942,16 @@ class Bola:
             self.esqdir += + 20
             self.axisX += .1
 
-        if self.axisZ <= -12.5:
+        # TRAVE - X 2.4 a 3.7
+        if self.axisZ < -12.8 and 2.4 <= self.axisX <= 3.7:
             music.play(0)
+
+        # 1.8 / 3.7 a 2.4
+        if self.axisZ > 1.7 and 2.4 <= self.axisX <= 3.7:
+            music.play(0)
+
+        print self.axisX
+        print self.axisZ
 
         glutPostRedisplay()
 
@@ -1000,13 +997,6 @@ class ArqGrade:
         while(contador < 6):
             glTranslate( 0.25, 0.0, 0.0)
             glutWireCube(0.18,100)
-            glPushMatrix()
-            glRotate(-45,1,0,0)
-            glEnable(GL_BLEND)
-            glColor4f(.9,.9, .9, .2)
-            glutSolidCone(0.15,.5,20,20)
-            glDisable(GL_BLEND)
-            glPopMatrix()
             glutSolidCube(0.15)
             contador += 1
 
