@@ -1,4 +1,4 @@
-<b> ESTÁDIO DE FUTEBOL COARACY DA MATA FONSECA.
+<b> ESTÁDIO DE FUTEBOL COARACY DA MATA FONSECA.</b>
 
 Projeto em OpenGL com python do estádio Coaracy da Mata Fonseca, situado na cidade de Arapiraca em Alagoas. <br>
 
